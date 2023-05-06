@@ -1,0 +1,26 @@
+{
+  "extends": [
+    "prettier"
+  ],
+  "ignorePatterns": [
+    "node_modules",
+    "artifacts"
+  ],
+  "rules": {
+    "spaced-comment": [
+      "error",
+      "always",
+      {
+        "exceptions": [
+          "-",
+          "+"
+        ],
+        "line": {
+          "markers": [
+            "/"
+          ]
+        }
+      }
+    ]
+  }
+}
