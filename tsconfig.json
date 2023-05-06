@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "outDir": "artifacts/dist",
+    "outDir": "dist",
     "noEmit": false,
+    "declaration": true,
     "target": "ESNext",
     "baseUrl": ".",
     "allowJs": true,
@@ -14,7 +15,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true,
     "lib": [
       "ESNext"
     ],
@@ -24,7 +24,9 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "artifacts",
+    "dist"
   ],
   "ts-node": {
     "compilerOptions": {

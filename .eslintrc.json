@@ -4,7 +4,8 @@
   ],
   "ignorePatterns": [
     "node_modules",
-    "artifacts"
+    "artifacts",
+    "dist"
   ],
   "rules": {
     "spaced-comment": [

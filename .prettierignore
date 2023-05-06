@@ -18,6 +18,7 @@ yalc.lock
 
 # production
 /build
+/artifacts
 /dist
 /tmp
 
