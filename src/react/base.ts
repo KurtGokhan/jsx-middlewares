@@ -1,7 +1,7 @@
 import { createMiddlewareContext } from '../context';
 
-export const defaultMiddlewareContext = createMiddlewareContext();
+export const baseMiddlewares = createMiddlewareContext();
 
-export const addMiddleware = defaultMiddlewareContext.addMiddleware;
-export const removeMiddleware = defaultMiddlewareContext.removeMiddleware;
-export const clearMiddlewares = defaultMiddlewareContext.clearMiddlewares;
+export const addMiddleware = baseMiddlewares.addMiddleware;
+export const removeMiddleware = baseMiddlewares.removeMiddleware;
+export const clearMiddlewares = baseMiddlewares.clearMiddlewares;

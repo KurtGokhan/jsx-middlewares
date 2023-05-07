@@ -1,1 +1,1 @@
-export { addMiddleware, defaultMiddlewareContext as baseContext, clearMiddlewares, removeMiddleware } from './base';
+export { addMiddleware, baseMiddlewares, clearMiddlewares, removeMiddleware } from './base';

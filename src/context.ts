@@ -1,4 +1,4 @@
-import type { Middleware, MiddlewareContext } from './types';
+import type { Middleware, MiddlewareContext, jsxDEVFn, jsxFn } from './types';
 
 export function createMiddlewareContext() {
   return createMiddlewareContextWithDefaults();

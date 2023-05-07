@@ -1,12 +1,9 @@
-import * as ReactJSXRuntime from 'react/jsx-runtime';
-import { defaultMiddlewareContext } from './base';
+import * as ReactJsx from 'react/jsx-runtime';
+import { baseMiddlewares } from './base';
 
-export const Fragment = ReactJSXRuntime.Fragment;
+export const Fragment = ReactJsx.Fragment;
 
-const originalJsx = defaultMiddlewareContext.defaultJsx || ReactJSXRuntime.jsx;
-const originalJsxs = defaultMiddlewareContext.defaultJsxs || ReactJSXRuntime.jsxs;
-
-const ctx = defaultMiddlewareContext.clone().setDefaultJsx(originalJsx, originalJsxs);
+const ctx = baseMiddlewares.clone().setDefaultJsx(ReactJsx.jsx, ReactJsx.jsxs);
 
 export const jsx = ctx.jsx;
 export const jsxs = ctx.jsxs;
