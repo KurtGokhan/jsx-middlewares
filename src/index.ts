@@ -1,2 +1,3 @@
-export { addOverhaul, removeOverhaul, setDefaultFragment, setDefaultJsx } from './manager';
-export type { Overhaul } from './types';
+export { addOverhaul, clearOverhauls, removeOverhaul, setDefaultFragment, setDefaultJsx } from './base';
+export { createOverhaulContext } from './context';
+export type { Overhaul, OverhaulContext, OverhaulResult } from './types';

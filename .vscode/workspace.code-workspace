@@ -1,7 +1,7 @@
 {
   "folders": [
     {
-      "name": "❤️ Root",
+      "name": "🌴 Root",
       "path": ".."
     },
     {
@@ -22,7 +22,7 @@
     "typescript.preferences.quoteStyle": "single",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "workbench.editor.labelFormat": "medium",
-    "typescript.tsdk": "❤️ Root/node_modules/typescript/lib",
+    "typescript.tsdk": "🌴 Root/node_modules/typescript/lib",
     "typescript.enablePromptUseWorkspaceTsdk": true
   }
 }
