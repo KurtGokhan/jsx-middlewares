@@ -1,4 +1,6 @@
-# React Decorators
+# React Overhaul
+
+A simple mechanism to add custom logic to JSX elements by injecting your own overhaul.
 
 ## Commands
 

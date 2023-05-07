@@ -1,2 +1,2 @@
-export { addDecorator, removeDecorator, setDefaultFragment, setDefaultJsx } from './manager';
-export type { Decorator } from './types';
+export { addOverhaul, removeOverhaul, setDefaultFragment, setDefaultJsx } from './manager';
+export type { Overhaul } from './types';

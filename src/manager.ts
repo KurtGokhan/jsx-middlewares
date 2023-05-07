@@ -1,6 +1,6 @@
-import type { Decorator } from './types';
+import type { Overhaul } from './types';
 
-export const decorators: Decorator[] = [];
+export const overhauls: Overhaul[] = [];
 
 export let defaultJsx: jsxFn | undefined;
 export let defaultJsxs: jsxFn | undefined;
@@ -19,20 +19,20 @@ export function setDefaultFragment(fragment?: any, devFragment?: any) {
   defaultFragmentDev = devFragment || fragment;
 }
 
-export function addDecorator(decorator: Decorator) {
-  decorators.push(decorator);
+export function addOverhaul(overhaul: Overhaul) {
+  overhauls.push(overhaul);
 
-  return function removeDecorator() {
-    const index = decorators.indexOf(decorator);
+  return function removeOverhaul() {
+    const index = overhauls.indexOf(overhaul);
     if (index > -1) {
-      decorators.splice(index, 1);
+      overhauls.splice(index, 1);
     }
   };
 }
 
-export function removeDecorator(decorator: Decorator) {
-  const index = decorators.indexOf(decorator);
+export function removeOverhaul(overhaul: Overhaul) {
+  const index = overhauls.indexOf(overhaul);
   if (index > -1) {
-    decorators.splice(index, 1);
+    overhauls.splice(index, 1);
   }
 }
