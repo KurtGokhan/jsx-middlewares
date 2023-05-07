@@ -1,6 +1,6 @@
 import * as ReactJSXRuntime from 'react/jsx-dev-runtime';
+import type { jsxFn } from '../types';
 import { baseContext } from './base';
-import type { jsxFn } from './types';
 
 export const Fragment = baseContext.defaultFragmentDev || ReactJSXRuntime.Fragment;
 
