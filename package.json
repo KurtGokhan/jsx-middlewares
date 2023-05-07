@@ -31,7 +31,7 @@
     "build": "yarn clean && yarn tsc",
     "clean": "rimraf dist && rimraf tsconfig.lib.tsbuildinfo",
     "test": "jest",
-    "test:watch": "jest --watch",
+    "test:watch": "jest --watchAll",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write ."
   },

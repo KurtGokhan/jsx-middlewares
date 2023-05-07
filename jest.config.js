@@ -3,10 +3,13 @@ const { compilerOptions } = require('./tsconfig.lib');
 
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-  globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.spec.json',
-    },
+  transform: {
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        tsconfig: 'tsconfig.spec.json',
+      },
+    ],
   },
   collectCoverage: true,
   // on node 14.x coverage provider v8 offers good speed and more or less good report
