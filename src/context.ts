@@ -1,7 +1,11 @@
 import type { Middleware, MiddlewareContext, jsxDEVFn, jsxFn } from './types';
 
-export function createMiddlewareContext() {
-  return createMiddlewareContextWithDefaults();
+export function createMiddlewareContext(
+  defaultJsx?: jsxFn | undefined,
+  defaultJsxs?: jsxFn | undefined,
+  defaultJsxDEV?: jsxDEVFn | undefined,
+) {
+  return createMiddlewareContextWithDefaults([], defaultJsx, defaultJsxs, defaultJsxDEV);
 }
 
 function createMiddlewareContextWithDefaults(

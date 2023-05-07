@@ -1,7 +1,13 @@
 {
   "name": "jsx-middlewares",
   "description": "A system for hooking into JSX rendering and applying custom logic with a middleware pattern.",
-  "keywords": ["jsx", "react", "middleware", "decorator", "directive"],
+  "keywords": [
+    "jsx",
+    "react",
+    "middleware",
+    "decorator",
+    "directive"
+  ],
   "version": "0.1.0",
   "license": "MIT",
   "author": {
@@ -20,8 +26,10 @@
     "./react/jsx-dev-runtime": "./dist/react/jsx-dev-runtime.js"
   },
   "scripts": {
-    "start": "tsc --watch --incremental",
-    "build": "tsc",
+    "tsc": "tsc -p tsconfig.lib.json",
+    "start": "yarn tsc --watch --incremental",
+    "build": "yarn clean && yarn tsc",
+    "clean": "rimraf dist && rimraf tsconfig.lib.tsbuildinfo",
     "test": "jest",
     "test:watch": "jest --watch",
     "prettier": "prettier --check .",
@@ -33,6 +41,8 @@
     "@types/react": "18.2.6",
     "jest": "^29.5.0",
     "prettier": "^2.8.8",
+    "rimraf": "^5.0.0",
+    "ts-jest": "^29.1.0",
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
