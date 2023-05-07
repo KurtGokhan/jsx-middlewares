@@ -4,41 +4,41 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
 
-addMiddlewares(function logMiddleware(next, type, props, key) {
-  console.log('Created: ', type, props, key);
+addMiddlewares(
+  function logMiddleware(next, _ctx, type, props, key) {
+    console.log('Created: ', type, props, key);
 
-  return next(type, props, key);
-});
+    return next(type, props, key);
+  },
+  function mouseEnterMiddleware(next, _ctx, type, props, key) {
+    if (type === 'button') {
+      const onMouseEnter = props.onMouseEnter;
 
-addMiddlewares(function mouseEnterMiddleware(next, type, props, key) {
-  if (type === 'button') {
-    const onMouseEnter = props.onMouseEnter;
+      props = {
+        ...props,
+        onMouseEnter: (...args: any) => {
+          console.log('Mouse enter');
+          onMouseEnter?.(...args);
+        },
+      };
+    }
 
-    props = {
-      ...props,
-      onMouseEnter: (...args: any) => {
-        console.log('Mouse enter');
-        onMouseEnter?.(...args);
-      },
-    };
-  }
+    return next(type, props, key);
+  },
+  function tooltipMiddleware(next, _ctx, type, props, key) {
+    if ('$tooltip' in props) {
+      let $tooltip;
+      ({ $tooltip, ...props } = props);
 
-  return next(type, props, key);
-});
+      props = {
+        ...props,
+        children: [$tooltip, React.Children.toArray(props.children)],
+      };
+    }
 
-addMiddlewares(function tooltipMiddleware(next, type, props, key) {
-  if ('$tooltip' in props) {
-    let $tooltip;
-    ({ $tooltip, ...props } = props);
-
-    props = {
-      ...props,
-      children: [$tooltip, React.Children.toArray(props.children)],
-    };
-  }
-
-  return next(type, props, key);
-});
+    return next(type, props, key);
+  },
+);
 
 const app = <App />;
 const root = createRoot(document.getElementById('root') as HTMLElement);

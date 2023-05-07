@@ -35,7 +35,7 @@ function createMiddlewareContextWithDefaults(
     let cb = jsx;
 
     for (let index = 0; index < middlewares.length; index++) {
-      cb = middlewares[index].bind(null, cb);
+      cb = middlewares[index].bind(null, cb, ctx);
     }
 
     return cb;
