@@ -10,19 +10,16 @@ function createMiddlewareContextWithDefaults(
   defaultJsxs?: jsxFn | undefined,
   defaultJsxDEV?: jsxDEVFn | undefined,
 ) {
-  let result: MiddlewareContext;
+  let ctx: MiddlewareContext;
 
-  function setDefaultJsx(jsx?: jsxFn, jsxs?: jsxFn, jsxDEV?: jsxDEVFn) {
-    defaultJsx = jsx;
-    defaultJsxs = jsxs || jsx;
-    defaultJsxDEV = jsxDEV || jsx;
-    return result;
-  }
+  defaultJsx = jsx;
+  defaultJsxs = jsxs || jsx;
+  defaultJsxDEV = jsxDEV || jsx;
 
   function addMiddleware(middleware: Middleware) {
     middlewares.push(middleware);
 
-    return result;
+    return ctx;
   }
 
   function removeMiddleware(middleware: Middleware) {
@@ -31,12 +28,12 @@ function createMiddlewareContextWithDefaults(
       middlewares.splice(index, 1);
     }
 
-    return result;
+    return ctx;
   }
 
   function clearMiddlewares() {
     middlewares.length = 0;
-    return result;
+    return ctx;
   }
 
   function applyMiddlewares(type: any, props: any, key: any, jsx: jsxFn) {
@@ -62,25 +59,24 @@ function createMiddlewareContextWithDefaults(
     return applyMiddlewares(type, props, key, jsxCb);
   }
 
-  function clone() {
-    return createMiddlewareContextWithDefaults(middlewares, defaultJsx, defaultJsxs, defaultJsxDEV);
+  function clone(jsx?: jsxFn, jsxs?: jsxFn, jsxDEV?: jsxDEVFn) {
+    return createMiddlewareContextWithDefaults(
+      middlewares,
+      jsx || defaultJsx,
+      jsxs || defaultJsxs,
+      jsxDEV || defaultJsxDEV,
+    );
   }
 
-  result = {
-    middlewares,
-    defaultJsx,
-    defaultJsxs,
-    defaultJsxDEV,
-    setDefaultJsx,
+  ctx = {
     addMiddleware,
     removeMiddleware,
     clearMiddlewares,
-    applyMiddlewares,
     jsx,
     jsxs,
     jsxDEV,
     clone,
   };
 
-  return result;
+  return ctx;
 }

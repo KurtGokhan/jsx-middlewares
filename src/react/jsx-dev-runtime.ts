@@ -3,6 +3,6 @@ import { baseMiddlewares } from './base';
 
 export const Fragment = ReactJsx.Fragment;
 
-const ctx = baseMiddlewares.clone().setDefaultJsx(undefined, undefined, ReactJsx.jsxDEV);
+const ctx = baseMiddlewares.clone(undefined, undefined, ReactJsx.jsxDEV);
 
 export const jsxDEV = ctx.jsxDEV;
