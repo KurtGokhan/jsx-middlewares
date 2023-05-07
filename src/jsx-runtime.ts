@@ -8,11 +8,11 @@ const originalJsx = defaultJsx || ReactJSXRuntime.jsx;
 const originalJsxs = defaultJsxs || ReactJSXRuntime.jsxs;
 
 export function jsx(type: any, props: any, key: any) {
-  [type, props, key] = applyDecorators(type, props, key);
+  [type, props, key] = applyDecorators(type, props, key, originalJsx);
   return originalJsx(type, props, key);
 }
 
 export function jsxs(type: any, props: any, key: any) {
-  [type, props, key] = applyDecorators(type, props, key);
+  [type, props, key] = applyDecorators(type, props, key, originalJsxs);
   return originalJsxs(type, props, key);
 }

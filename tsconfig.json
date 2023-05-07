@@ -26,6 +26,7 @@
   "exclude": [
     "node_modules",
     "artifacts",
+    "examples",
     "dist"
   ],
   "ts-node": {

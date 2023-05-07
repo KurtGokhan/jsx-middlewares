@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "name": "❤️ Root",
+      "path": ".."
+    },
+    {
+      "name": "💪 Simple Example",
+      "path": "../examples/simple"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "examples": true
+    }
+  }
+}

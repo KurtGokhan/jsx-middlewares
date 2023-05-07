@@ -1,16 +1,14 @@
-export type Decorator = (type: any, props: any, key: any) => [any, any, any];
-
-type jsxFn = (type: any, props: any, key: any) => JSX.Element;
+import type { Decorator } from './types';
 
 export const decorators: Decorator[] = [];
 
 export let defaultJsx: jsxFn | undefined;
 export let defaultJsxs: jsxFn | undefined;
-export let defaultJsxDev: jsxFn | undefined;
+export let defaultJsxDev: jsxFnDev | undefined;
 export let defaultFragment: any;
 export let defaultFragmentDev: any;
 
-export function setDefaultJsx(jsx?: jsxFn, jsxs?: jsxFn, jsxDev?: jsxFn) {
+export function setDefaultJsx(jsx?: jsxFn, jsxs?: jsxFn, jsxDev?: jsxFnDev) {
   defaultJsx = jsx;
   defaultJsxs = jsxs || jsx;
   defaultJsxDev = jsxDev || jsx;
