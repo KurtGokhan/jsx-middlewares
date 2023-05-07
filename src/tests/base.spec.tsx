@@ -1,6 +1,7 @@
 /** @jsxImportSource . */
 
-import { mw } from './jsx-runtime';
+import { Middleware } from 'src/types';
+import { mw } from './jsx-dev-runtime';
 
 describe('jsx-middlewares', () => {
   afterEach(() => {
@@ -19,6 +20,23 @@ describe('jsx-middlewares', () => {
 
     const result = <div title={'testtitle'} className={'testcn'} key={5} />;
     expect(result).toEqual(['div', { title: 'testtitle', className: 'intercepted' }, 5]);
+  });
+
+  test('can add and remove middlewares', () => {
+    const className1: Middleware = function className1(next, ctx, type, props, key) {
+      return next(type, { ...props, className: props.className + ' c1' }, key);
+    };
+
+    const className2: Middleware = function className2(next, ctx, type, props, key) {
+      return next(type, { ...props, className: props.className + ' c2' }, key);
+    };
+
+    mw.addMiddlewares(className1, className2);
+
+    mw.removeMiddlewares(className2);
+
+    const result = <div title={'testtitle'} className={'c0'} key={5} />;
+    expect(result).toEqual(['div', { title: 'testtitle', className: 'c0 c1' }, 5]);
   });
 
   test('first middleware runs last (lifo)', () => {

@@ -17,6 +17,7 @@ module.exports = {
   collectCoverageFrom: [
     '**/*.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
+    '!**/types.ts',
     '!**/tests/**',
     '!**/node_modules/**',
     '!<rootDir>/out/**',
@@ -41,4 +42,5 @@ module.exports = {
   roots: ['<rootDir>'],
   modulePaths: [compilerOptions.baseUrl],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths),
+  setupFilesAfterEnv: ['<rootDir>/src/tests/react/setup.ts'],
 };
