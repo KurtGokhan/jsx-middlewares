@@ -12,51 +12,71 @@ function createMiddlewareContextWithDefaults(
 ) {
   let ctx: MiddlewareContext;
 
-  defaultJsx = jsx;
-  defaultJsxs = jsxs || jsx;
-  defaultJsxDEV = jsxDEV || jsx;
+  defaultJsxs ??= defaultJsx;
+  defaultJsxDEV ??= defaultJsx;
 
-  function addMiddleware(middleware: Middleware) {
-    middlewares.push(middleware);
+  let jsxCb: jsxFn;
+  let jsxsCb: jsxFn;
+  let jsxDEVCb: jsxDEVFn;
 
-    return ctx;
+  function refreshCallbacks() {
+    jsxCb = createCallback(defaultJsx!);
+    jsxsCb = createCallback(defaultJsxs!);
+    jsxDEVCb = function jsxDEV(type, props, key, isStaticChildren, source, self) {
+      return createCallback((type, props, key) => defaultJsxDEV!(type, props, key, isStaticChildren, source, self))(
+        type,
+        props,
+        key,
+      );
+    };
   }
 
-  function removeMiddleware(middleware: Middleware) {
-    const index = middlewares.indexOf(middleware);
-    if (index > -1) {
-      middlewares.splice(index, 1);
-    }
-
-    return ctx;
-  }
-
-  function clearMiddlewares() {
-    middlewares.length = 0;
-    return ctx;
-  }
-
-  function applyMiddlewares(type: any, props: any, key: any, jsx: jsxFn) {
+  function createCallback(jsx: jsxFn) {
     let cb = jsx;
 
     for (let index = 0; index < middlewares.length; index++) {
       cb = middlewares[index].bind(null, cb);
     }
 
-    return cb(type, props, key);
+    return cb;
+  }
+
+  function addMiddlewares(...items: Middleware[]) {
+    middlewares.push(...items);
+    refreshCallbacks();
+
+    return ctx;
+  }
+
+  function removeMiddlewares(...items: Middleware[]) {
+    for (const item of items) {
+      const index = middlewares.indexOf(item);
+      if (index > -1) {
+        middlewares.splice(index, 1);
+      }
+    }
+
+    refreshCallbacks();
+
+    return ctx;
+  }
+
+  function clearMiddlewares() {
+    middlewares.length = 0;
+    refreshCallbacks();
+    return ctx;
   }
 
   function jsx(type: any, props: any, key: any) {
-    return applyMiddlewares(type, props, key, defaultJsx!);
+    return jsxCb(type, props, key);
   }
 
   function jsxs(type: any, props: any, key: any) {
-    return applyMiddlewares(type, props, key, defaultJsxs!);
+    return jsxsCb(type, props, key);
   }
 
   function jsxDEV(type: any, props: any, key: any, isStaticChildren: boolean, source: any, self: any) {
-    const jsxCb: jsxFn = (type, props, key) => defaultJsxDEV!(type, props, key, isStaticChildren, source, self);
-    return applyMiddlewares(type, props, key, jsxCb);
+    return jsxDEVCb(type, props, key, isStaticChildren, source, self);
   }
 
   function clone(jsx?: jsxFn, jsxs?: jsxFn, jsxDEV?: jsxDEVFn) {
@@ -69,14 +89,16 @@ function createMiddlewareContextWithDefaults(
   }
 
   ctx = {
-    addMiddleware,
-    removeMiddleware,
+    addMiddlewares,
+    removeMiddlewares,
     clearMiddlewares,
     jsx,
     jsxs,
     jsxDEV,
     clone,
   };
+
+  refreshCallbacks();
 
   return ctx;
 }

@@ -1,1 +1,1 @@
-export { addMiddleware, baseMiddlewares, clearMiddlewares, removeMiddleware } from './base';
+export { addMiddlewares, baseMiddlewares, clearMiddlewares, removeMiddlewares } from './base';

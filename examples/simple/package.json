@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "jsx-middlewares": "file:../..",
+    "jsx-middlewares": "link:../..",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {

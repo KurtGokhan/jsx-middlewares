@@ -4,8 +4,8 @@ export type jsxDEVFn = (type: any, props: any, key: any, isStatic: boolean, sour
 export type Middleware = (next: jsxFn, type: any, props: any, key: any) => JSX.Element;
 
 export interface MiddlewareContext {
-  addMiddleware(middleware: Middleware): MiddlewareContext;
-  removeMiddleware(middleware: Middleware): MiddlewareContext;
+  addMiddlewares(...middlewares: Middleware[]): MiddlewareContext;
+  removeMiddlewares(...middlewares: Middleware[]): MiddlewareContext;
   clearMiddlewares(): MiddlewareContext;
   jsx: jsxFn;
   jsxs: jsxFn;
