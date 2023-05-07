@@ -1,11 +1,11 @@
-import type { Overhaul, OverhaulContext } from './types';
+import type { Middleware, OverhaulContext } from './types';
 
 export function createOverhaulContext() {
   return createOverhaulContextWithDefaults();
 }
 
 function createOverhaulContextWithDefaults(
-  overhauls: Overhaul[] = [],
+  overhauls: Middleware[] = [],
   defaultJsx?: jsxFn | undefined,
   defaultJsxs?: jsxFn | undefined,
   defaultJsxDEV?: jsxDEVFn | undefined,
@@ -19,13 +19,13 @@ function createOverhaulContextWithDefaults(
     return result;
   }
 
-  function addOverhaul(overhaul: Overhaul) {
+  function addOverhaul(overhaul: Middleware) {
     overhauls.push(overhaul);
 
     return result;
   }
 
-  function removeOverhaul(overhaul: Overhaul) {
+  function removeOverhaul(overhaul: Middleware) {
     const index = overhauls.indexOf(overhaul);
     if (index > -1) {
       overhauls.splice(index, 1);
@@ -40,27 +40,26 @@ function createOverhaulContextWithDefaults(
   }
 
   function applyOverhauls(type: any, props: any, key: any, jsx: jsxFn) {
+    let cb = jsx;
+
     for (let index = 0; index < overhauls.length; index++) {
-      [type, props, key] = overhauls[index](type, props, key, jsx);
+      cb = overhauls[index].bind(null, cb);
     }
 
-    return [type, props, key] as const;
+    return cb(type, props, key);
   }
 
   function jsx(type: any, props: any, key: any) {
-    [type, props, key] = applyOverhauls(type, props, key, defaultJsx!);
-    return defaultJsx!(type, props, key);
+    return applyOverhauls(type, props, key, defaultJsx!);
   }
 
   function jsxs(type: any, props: any, key: any) {
-    [type, props, key] = applyOverhauls(type, props, key, defaultJsxs!);
-    return defaultJsxs!(type, props, key);
+    return applyOverhauls(type, props, key, defaultJsxs!);
   }
 
   function jsxDEV(type: any, props: any, key: any, isStaticChildren: boolean, source: any, self: any) {
     const jsxCb: jsxFn = (type, props, key) => defaultJsxDEV!(type, props, key, isStaticChildren, source, self);
-    [type, props, key] = applyOverhauls(type, props, key, jsxCb);
-    return defaultJsxDEV!(type, props, key, isStaticChildren, source, self);
+    return applyOverhauls(type, props, key, jsxCb);
   }
 
   function clone() {

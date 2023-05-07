@@ -1,20 +1,18 @@
 export type jsxFn = (type: any, props: any, key: any) => JSX.Element;
 export type jsxDEVFn = (type: any, props: any, key: any, isStatic: boolean, source: any, self: any) => JSX.Element;
 
-export type OverhaulResult = readonly [type: any, props: any, key: any];
-
-export type Overhaul = (type: any, props: any, key: any, jsx: jsxFn) => OverhaulResult;
+export type Middleware = (next: jsxFn, type: any, props: any, key: any) => JSX.Element;
 
 export interface OverhaulContext {
-  overhauls: Overhaul[];
+  overhauls: Middleware[];
   defaultJsx: jsxFn | undefined;
   defaultJsxs: jsxFn | undefined;
   defaultJsxDEV: jsxDEVFn | undefined;
   setDefaultJsx(jsx?: jsxFn, jsxs?: jsxFn, jsxDEV?: jsxDEVFn): OverhaulContext;
-  addOverhaul(overhaul: Overhaul): OverhaulContext;
-  removeOverhaul(overhaul: Overhaul): OverhaulContext;
+  addOverhaul(overhaul: Middleware): OverhaulContext;
+  removeOverhaul(overhaul: Middleware): OverhaulContext;
   clearOverhauls(): OverhaulContext;
-  applyOverhauls(type: any, props: any, key: any, jsx: jsxFn): OverhaulResult;
+  applyOverhauls(type: any, props: any, key: any, jsx: jsxFn): JSX.Element;
   jsx: jsxFn;
   jsxs: jsxFn;
   jsxDEV: jsxDEVFn;

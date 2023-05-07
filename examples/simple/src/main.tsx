@@ -4,13 +4,13 @@ import { addOverhaul } from 'react-overhaul/react';
 import App from './App';
 import './index.css';
 
-addOverhaul((type, props, key) => {
+addOverhaul(function logMiddleware(next, type, props, key) {
   console.log('Created: ', type, props, key);
 
-  return [type, props, key];
+  return next(type, props, key);
 });
 
-addOverhaul((type, props, key) => {
+addOverhaul(function mouseEnterMiddleware(next, type, props, key) {
   if (type === 'button') {
     const onMouseEnter = props.onMouseEnter;
 
@@ -23,10 +23,10 @@ addOverhaul((type, props, key) => {
     };
   }
 
-  return [type, props, key];
+  return next(type, props, key);
 });
 
-addOverhaul((type, props, key) => {
+addOverhaul(function tooltipMiddleware(next, type, props, key) {
   if ('$tooltip' in props) {
     let $tooltip;
     ({ $tooltip, ...props } = props);
@@ -37,7 +37,7 @@ addOverhaul((type, props, key) => {
     };
   }
 
-  return [type, props, key];
+  return next(type, props, key);
 });
 
 const app = <App />;
