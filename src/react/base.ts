@@ -1,9 +1,7 @@
 import { createOverhaulContext } from '../context';
 
-export const baseContext = createOverhaulContext();
+export const defaultOverhaulContext = createOverhaulContext();
 
-export const setDefaultFragment = baseContext.setDefaultFragment;
-export const setDefaultJsx = baseContext.setDefaultJsx;
-export const addOverhaul = baseContext.addOverhaul;
-export const removeOverhaul = baseContext.removeOverhaul;
-export const clearOverhauls = baseContext.clearOverhauls;
+export const addOverhaul = defaultOverhaulContext.addOverhaul;
+export const removeOverhaul = defaultOverhaulContext.removeOverhaul;
+export const clearOverhauls = defaultOverhaulContext.clearOverhauls;

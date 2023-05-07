@@ -1,1 +1,1 @@
-export { addOverhaul, clearOverhauls, removeOverhaul, setDefaultFragment, setDefaultJsx } from './base';
+export { addOverhaul, clearOverhauls, defaultOverhaulContext as baseContext, removeOverhaul } from './base';
