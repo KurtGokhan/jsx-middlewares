@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-overhaul": "file:../..",
+    "jsx-middlewares": "file:../..",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {

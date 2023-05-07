@@ -20,7 +20,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "jsxImportSource": "react-overhaul/react"
+    "jsxImportSource": "jsx-middlewares/react"
   },
   "include": [
     "src",

@@ -1,6 +1,6 @@
-# React Overhaul
+# React Middleware
 
-A simple mechanism to add custom logic to JSX elements by injecting your own overhaul.
+A simple mechanism to add custom logic to JSX elements by injecting your own middleware.
 
 ## Commands
 

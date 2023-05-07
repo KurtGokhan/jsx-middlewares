@@ -1,1 +1,1 @@
-export { addOverhaul, clearOverhauls, defaultOverhaulContext as baseContext, removeOverhaul } from './base';
+export { addMiddleware, defaultMiddlewareContext as baseContext, clearMiddlewares, removeMiddleware } from './base';

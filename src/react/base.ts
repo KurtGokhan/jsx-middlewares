@@ -1,7 +1,7 @@
-import { createOverhaulContext } from '../context';
+import { createMiddlewareContext } from '../context';
 
-export const defaultOverhaulContext = createOverhaulContext();
+export const defaultMiddlewareContext = createMiddlewareContext();
 
-export const addOverhaul = defaultOverhaulContext.addOverhaul;
-export const removeOverhaul = defaultOverhaulContext.removeOverhaul;
-export const clearOverhauls = defaultOverhaulContext.clearOverhauls;
+export const addMiddleware = defaultMiddlewareContext.addMiddleware;
+export const removeMiddleware = defaultMiddlewareContext.removeMiddleware;
+export const clearMiddlewares = defaultMiddlewareContext.clearMiddlewares;

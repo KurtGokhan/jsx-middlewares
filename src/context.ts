@@ -1,16 +1,16 @@
-import type { Middleware, OverhaulContext } from './types';
+import type { Middleware, MiddlewareContext } from './types';
 
-export function createOverhaulContext() {
-  return createOverhaulContextWithDefaults();
+export function createMiddlewareContext() {
+  return createMiddlewareContextWithDefaults();
 }
 
-function createOverhaulContextWithDefaults(
-  overhauls: Middleware[] = [],
+function createMiddlewareContextWithDefaults(
+  middlewares: Middleware[] = [],
   defaultJsx?: jsxFn | undefined,
   defaultJsxs?: jsxFn | undefined,
   defaultJsxDEV?: jsxDEVFn | undefined,
 ) {
-  let result: OverhaulContext;
+  let result: MiddlewareContext;
 
   function setDefaultJsx(jsx?: jsxFn, jsxs?: jsxFn, jsxDEV?: jsxDEVFn) {
     defaultJsx = jsx;
@@ -19,63 +19,63 @@ function createOverhaulContextWithDefaults(
     return result;
   }
 
-  function addOverhaul(overhaul: Middleware) {
-    overhauls.push(overhaul);
+  function addMiddleware(middleware: Middleware) {
+    middlewares.push(middleware);
 
     return result;
   }
 
-  function removeOverhaul(overhaul: Middleware) {
-    const index = overhauls.indexOf(overhaul);
+  function removeMiddleware(middleware: Middleware) {
+    const index = middlewares.indexOf(middleware);
     if (index > -1) {
-      overhauls.splice(index, 1);
+      middlewares.splice(index, 1);
     }
 
     return result;
   }
 
-  function clearOverhauls() {
-    overhauls.length = 0;
+  function clearMiddlewares() {
+    middlewares.length = 0;
     return result;
   }
 
-  function applyOverhauls(type: any, props: any, key: any, jsx: jsxFn) {
+  function applyMiddlewares(type: any, props: any, key: any, jsx: jsxFn) {
     let cb = jsx;
 
-    for (let index = 0; index < overhauls.length; index++) {
-      cb = overhauls[index].bind(null, cb);
+    for (let index = 0; index < middlewares.length; index++) {
+      cb = middlewares[index].bind(null, cb);
     }
 
     return cb(type, props, key);
   }
 
   function jsx(type: any, props: any, key: any) {
-    return applyOverhauls(type, props, key, defaultJsx!);
+    return applyMiddlewares(type, props, key, defaultJsx!);
   }
 
   function jsxs(type: any, props: any, key: any) {
-    return applyOverhauls(type, props, key, defaultJsxs!);
+    return applyMiddlewares(type, props, key, defaultJsxs!);
   }
 
   function jsxDEV(type: any, props: any, key: any, isStaticChildren: boolean, source: any, self: any) {
     const jsxCb: jsxFn = (type, props, key) => defaultJsxDEV!(type, props, key, isStaticChildren, source, self);
-    return applyOverhauls(type, props, key, jsxCb);
+    return applyMiddlewares(type, props, key, jsxCb);
   }
 
   function clone() {
-    return createOverhaulContextWithDefaults(overhauls, defaultJsx, defaultJsxs, defaultJsxDEV);
+    return createMiddlewareContextWithDefaults(middlewares, defaultJsx, defaultJsxs, defaultJsxDEV);
   }
 
   result = {
-    overhauls,
+    middlewares,
     defaultJsx,
     defaultJsxs,
     defaultJsxDEV,
     setDefaultJsx,
-    addOverhaul,
-    removeOverhaul,
-    clearOverhauls,
-    applyOverhauls,
+    addMiddleware,
+    removeMiddleware,
+    clearMiddlewares,
+    applyMiddlewares,
     jsx,
     jsxs,
     jsxDEV,

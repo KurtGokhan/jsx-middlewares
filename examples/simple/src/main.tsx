@@ -1,16 +1,16 @@
+import { addMiddleware } from 'jsx-middlewares/react';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { addOverhaul } from 'react-overhaul/react';
 import App from './App';
 import './index.css';
 
-addOverhaul(function logMiddleware(next, type, props, key) {
+addMiddleware(function logMiddleware(next, type, props, key) {
   console.log('Created: ', type, props, key);
 
   return next(type, props, key);
 });
 
-addOverhaul(function mouseEnterMiddleware(next, type, props, key) {
+addMiddleware(function mouseEnterMiddleware(next, type, props, key) {
   if (type === 'button') {
     const onMouseEnter = props.onMouseEnter;
 
@@ -26,7 +26,7 @@ addOverhaul(function mouseEnterMiddleware(next, type, props, key) {
   return next(type, props, key);
 });
 
-addOverhaul(function tooltipMiddleware(next, type, props, key) {
+addMiddleware(function tooltipMiddleware(next, type, props, key) {
   if ('$tooltip' in props) {
     let $tooltip;
     ({ $tooltip, ...props } = props);

@@ -1,2 +1,2 @@
-export { createOverhaulContext } from './context';
-export type { Middleware as Overhaul, OverhaulContext } from './types';
+export { createMiddlewareContext } from './context';
+export type { Middleware as Middleware, MiddlewareContext } from './types';
