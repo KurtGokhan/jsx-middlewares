@@ -30,6 +30,7 @@
     "node_modules",
     "artifacts",
     "examples",
+    "website",
     "dist",
     "src/tests/**"
   ]

@@ -17,10 +17,10 @@ yalc.lock
 # testing
 
 # production
-/build
-/artifacts
-/dist
-/tmp
+build
+artifacts
+dist
+tmp
 
 # Environment
 .env
@@ -31,3 +31,4 @@ yalc.lock
 
 /public/mockServiceWorker.js
 /.next
+.docusaurus

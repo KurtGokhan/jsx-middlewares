@@ -5,12 +5,17 @@
       "path": ".."
     },
     {
+      "name": "🌐 Website",
+      "path": "../website"
+    },
+    {
       "name": "💪 Simple Example",
       "path": "../examples/simple"
     }
   ],
   "settings": {
     "files.exclude": {
+      "website": true,
       "examples": true
     },
     "editor.codeActionsOnSave": {

@@ -1,0 +1,161 @@
+---
+sidebar_position: 1
+---
+
+import IndexExample from '@site/src/components/examples/index.example';
+
+# JSX Middlewares
+
+JSX Middlewares allows you to change the behavior of JSX renderer by adding middlewares.
+This allows you to enhance JSX with additional features that were not possible before, such as adding support for custom attributes and Angular-like directives.
+
+## Installation
+
+```bash npm2yarn
+npm install jsx-middlewares
+```
+
+## Setup your JSX transpiler
+
+To use JSX Middlewares, you need to setup your JSX transpiler to use the `jsx-middlewares/react` package as the JSX factory. This is done differently depending on the transpiler you are using.
+
+<Tabs>
+
+<TabItem value="typescript" label="Typescript">
+
+```json title="tsconfig.json"
+{
+  "compilerOptions": {
+    "jsxImportSource": "jsx-middlewares/react"
+  }
+}
+```
+
+</TabItem>
+
+<TabItem value="babel" label="Babel">
+
+```json title=".babelrc"
+{
+  "plugins": [
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        "importSource": "jsx-middlewares/react"
+      }
+    ]
+  ]
+}
+```
+
+</TabItem>
+
+<TabItem value="vite" label="Vite">
+
+If you are using Typescript, you can use the Typescript configuration too.
+
+```js title="vite.config.js"
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  esbuild: {
+    jsxImportSource: 'jsx-middlewares/react',
+  },
+});
+```
+
+</TabItem>
+
+<TabItem value="webpack" label="Webpack">
+
+```js title="webpack.config.js"
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              plugins: [
+                [
+                  '@babel/plugin-transform-react-jsx',
+                  {
+                    importSource: 'jsx-middlewares/react',
+                  },
+                ],
+              ],
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+</TabItem>
+
+<TabItem value="perfile" label="Per file">
+
+Most JSX transpilers allow you to specify the JSX factory per file. This is useful if you want to use JSX Middlewares in only some files.
+
+```jsx title="my-file.jsx"
+/** @jsxImportSource jsx-middlewares/react */
+
+export function App() {
+  return <h1>Hello World</h1>;
+}
+```
+
+</TabItem>
+
+</Tabs>
+
+## Usage
+
+Firstly, you need to add middlewares at the start of your application.
+
+```jsx title="main.jsx"
+import { addMiddlewares } from 'jsx-middlewares/react';
+
+addMiddlewares(function outlineMiddleware(next, ctx, type, props, key) {
+  // Do something with the type and props
+
+  // This will modify the props to add a border and margin to all HTML elements
+  if (typeof type === 'string') {
+    props = {
+      ...props,
+      style: {
+        ...props.style,
+        border: '2px solid crimson',
+        margin: '2px',
+      },
+    };
+  }
+
+  // Call the next middleware with the new props
+  // If there is no next middleware, it will call the JSX renderer
+  return next(type, props, key);
+});
+```
+
+Then, you can use JSX as usual.
+
+```jsx title="my-file.jsx"
+export function App() {
+  return (
+    <div>
+      <h1>Hello World</h1>
+      <p>This is a paragraph</p>
+    </div>
+  );
+}
+```
+
+The output will be like this:
+
+<BrowserWindow>
+  <IndexExample />
+</BrowserWindow>
