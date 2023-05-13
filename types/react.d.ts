@@ -1,4 +1,4 @@
-import { jsxDEVFn, jsxFn } from '../types';
+import { jsxDEVFn, jsxFn } from './common';
 
 declare module 'react/jsx-runtime' {
   export const Fragment: Symbol;

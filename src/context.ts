@@ -1,4 +1,4 @@
-import type { Middleware, MiddlewareContext, jsxDEVFn, jsxFn } from './types';
+import type { Middleware, MiddlewareContext, jsxDEVFn, jsxFn } from '../types/common';
 
 export function createMiddlewareContext(
   defaultJsx?: jsxFn | undefined,
@@ -71,6 +71,16 @@ function createMiddlewareContextWithDefaults(
     return ctx;
   }
 
+  function jsxClassic(type: any, props: any, ...children: any[]) {
+    if (props == null) props = {};
+    if (children != null) props.children = children;
+
+    const key = props.key;
+    delete props.key;
+
+    return jsxsCb(type, props, key);
+  }
+
   function jsx(type: any, props: any, key: any) {
     return jsxCb(type, props, key);
   }
@@ -96,6 +106,7 @@ function createMiddlewareContextWithDefaults(
     addMiddlewares,
     removeMiddlewares,
     clearMiddlewares,
+    jsxClassic,
     jsx,
     jsxs,
     jsxDEV,
