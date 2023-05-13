@@ -1,6 +1,11 @@
 {
   "name": "jsx-middlewares",
   "description": "Transform rendered JSX with middlewares",
+  "homepage": "https://gkurt.com/jsx-middlewares/",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/KurtGokhan/jsx-middlewares"
+  },
   "keywords": [
     "jsx",
     "react",
