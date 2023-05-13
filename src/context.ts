@@ -24,13 +24,9 @@ function createMiddlewareContextWithDefaults(
   let jsxDEVCb: jsxDEVFn;
 
   function refreshCallbacks() {
-    jsxCb = createCallback(function defaulJsxWrapper(type, props, key) {
-      return defaultJsx!(type, props, key);
-    });
+    jsxCb = createCallback(defaultJsx?.bind(null)!);
 
-    jsxsCb = createCallback(function defaulJsxsWrapper(type, props, key) {
-      return defaultJsxs!(type, props, key);
-    });
+    jsxsCb = createCallback(defaultJsxs?.bind(null)!);
 
     jsxDEVCb = function jsxDEV(type, props, key, isStaticChildren, source, self) {
       return createCallback(function defaultJsxDEVWrapper(type, props, key) {
@@ -41,8 +37,10 @@ function createMiddlewareContextWithDefaults(
 
   function createCallback(jsx: jsxFn) {
     let cb = jsx as MiddlewareNextFn;
-    cb.context = ctx;
-    cb.original = jsx;
+    if (cb) {
+      cb.context = ctx;
+      cb.original = jsx;
+    }
 
     for (let index = 0; index < middlewares.length; index++) {
       const mw = middlewares[index];
