@@ -35,7 +35,8 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "prettier": "prettier --check .",
-    "prettier:fix": "prettier --write ."
+    "prettier:fix": "prettier --write .",
+    "prepare": "yarn build"
   },
   "dependencies": {},
   "devDependencies": {
