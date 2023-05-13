@@ -44,5 +44,5 @@ module.exports = {
   roots: ['<rootDir>'],
   modulePaths: [compilerOptions.baseUrl],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths),
-  setupFilesAfterEnv: ['<rootDir>/src/tests/react/setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/tests/react/setup.ts'],
 };

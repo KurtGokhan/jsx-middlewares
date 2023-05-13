@@ -24,8 +24,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.tsx",
-    "types/**/*.ts"
+    "src/**/*.tsx"
   ],
   "exclude": [
     "node_modules",
@@ -33,6 +32,6 @@
     "examples",
     "website",
     "dist",
-    "src/tests/**"
+    "tests/**"
   ]
 }

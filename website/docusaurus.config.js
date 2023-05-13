@@ -73,29 +73,7 @@ const config = {
           },
         ],
       },
-      footer: {
-        style: 'dark',
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Get Started',
-                to: '/',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'GitHub',
-                href: 'https://github.com/KurtGokhan/jsx-middlewares',
-              },
-            ],
-          },
-        ],
-      },
+      footer: {},
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,

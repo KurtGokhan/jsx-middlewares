@@ -1,8 +1,8 @@
-import * as ReactJsx from 'react/jsx-dev-runtime';
+import { jsxDEV as _jsxDEV } from 'react/jsx-dev-runtime';
 import { baseMiddlewares } from './base';
 
-export const Fragment = ReactJsx.Fragment;
+export { Fragment } from 'react/jsx-dev-runtime';
 
-const ctx = baseMiddlewares.clone(undefined, undefined, ReactJsx.jsxDEV);
+const ctx = baseMiddlewares.clone(undefined, undefined, _jsxDEV);
 
 export const jsxDEV = ctx.jsxDEV;

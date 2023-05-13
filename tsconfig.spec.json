@@ -1,11 +1,14 @@
 {
   "extends": "./tsconfig.lib.json",
   "compilerOptions": {
+    "rootDir": ".",
     "jsx": "react-jsxdev"
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx"
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
   ],
   "exclude": [
     "node_modules",

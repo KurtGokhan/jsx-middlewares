@@ -25,8 +25,7 @@
     "./react": "./dist/react/index.js",
     "./react/jsx-runtime": "./dist/react/jsx-runtime.js",
     "./react/jsx-dev-runtime": "./dist/react/jsx-dev-runtime.js",
-    "./types/common": "./types/common.d.ts",
-    "./types/react": "./types/react.d.ts"
+    "./react/types": "./dist/react/types.d.ts"
   },
   "scripts": {
     "tsc": "tsc -p tsconfig.lib.json",
