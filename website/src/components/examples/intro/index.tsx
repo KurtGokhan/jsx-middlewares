@@ -5,7 +5,7 @@ import { createLocalJsxContext } from '../setup';
 const ctx = createLocalJsxContext();
 const jsx = ctx.jsxClassic;
 
-ctx.addMiddlewares(function borderMiddleware(next, ctx, type, props, key) {
+ctx.addMiddlewares(function borderMiddleware(next, type, props, key) {
   // This will modify the props to add a border and margin to all HTML elements
   if (typeof type === 'string') {
     props = {

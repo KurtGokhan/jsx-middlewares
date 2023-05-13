@@ -13,15 +13,15 @@ describe('jsx-middlewares/react', () => {
   });
 
   test('can add and remove middlewares', () => {
-    const className1: Middleware = function className1(next, ctx, type, props, key) {
+    const className1: Middleware = function className1(next, type, props, key) {
       return next(type, { ...props, className: props.className + ' c1' }, key);
     };
 
-    const className2: Middleware = function className2(next, ctx, type, props, key) {
+    const className2: Middleware = function className2(next, type, props, key) {
       return next(type, { ...props, className: props.className + ' c2' }, key);
     };
 
-    const className3: Middleware = function className2(next, ctx, type, props, key) {
+    const className3: Middleware = function className2(next, type, props, key) {
       return next(type, { ...props, className: props.className + ' c3' }, key);
     };
 

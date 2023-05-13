@@ -1,4 +1,4 @@
-import type { Middleware, MiddlewareContext, jsxDEVFn, jsxFn } from './types';
+import type { Middleware, MiddlewareContext, MiddlewareNextFn, jsxDEVFn, jsxFn } from './types';
 
 export function createMiddlewareContext(
   defaultJsx?: jsxFn | undefined,
@@ -24,22 +24,33 @@ function createMiddlewareContextWithDefaults(
   let jsxDEVCb: jsxDEVFn;
 
   function refreshCallbacks() {
-    jsxCb = createCallback(defaultJsx!);
-    jsxsCb = createCallback(defaultJsxs!);
+    jsxCb = createCallback(function defaulJsxWrapper(type, props, key) {
+      return defaultJsx!(type, props, key);
+    });
+
+    jsxsCb = createCallback(function defaulJsxsWrapper(type, props, key) {
+      return defaultJsxs!(type, props, key);
+    });
+
     jsxDEVCb = function jsxDEV(type, props, key, isStaticChildren, source, self) {
-      return createCallback((type, props, key) => defaultJsxDEV!(type, props, key, isStaticChildren, source, self))(
-        type,
-        props,
-        key,
-      );
+      return createCallback(function defaultJsxDEVWrapper(type, props, key) {
+        return defaultJsxDEV!(type, props, key, isStaticChildren, source, self);
+      })(type, props, key);
     };
   }
 
   function createCallback(jsx: jsxFn) {
-    let cb = jsx;
+    let cb = jsx as MiddlewareNextFn;
+    cb.context = ctx;
+    cb.original = jsx;
 
     for (let index = 0; index < middlewares.length; index++) {
-      cb = middlewares[index].bind(null, cb, ctx);
+      const mw = middlewares[index];
+      if (!mw) continue;
+
+      cb = mw.bind(null, cb) as MiddlewareNextFn;
+      cb.context = ctx;
+      cb.original = jsx;
     }
 
     return cb;

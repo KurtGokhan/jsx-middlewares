@@ -1,7 +1,7 @@
 import { Middleware } from 'jsx-middlewares';
 import styles from './index.module.scss';
 
-export const tooltipMiddleware: Middleware = function tooltipMiddleware(next, _ctx, type, { $tooltip, ...props }, key) {
+export const tooltipMiddleware: Middleware = function tooltipMiddleware(next, type, { $tooltip, ...props }, key) {
   if ($tooltip) {
     return (
       <div className={styles.tooltipContainer}>

@@ -48,7 +48,7 @@
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
-    "react": "18.2.0"
+    "react": ">=18"
   },
   "peerDependenciesMeta": {
     "react": {

@@ -5,12 +5,12 @@ import { tooltipMiddleware } from './middlewares/tooltip';
 
 export function setupMiddlewares() {
   addMiddlewares(
-    function logMiddleware(next, _ctx, type, props, key) {
+    function logMiddleware(next, type, props, key) {
       console.log('Created: ', type, props, key);
 
       return next(type, props, key);
     },
-    function mouseEnterMiddleware(next, _ctx, type, props, key) {
+    function mouseEnterMiddleware(next, type, props, key) {
       if (type === 'button') {
         const onMouseEnter = props.onMouseEnter;
 

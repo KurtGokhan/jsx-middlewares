@@ -1,6 +1,6 @@
 /** @jsxImportSource . */
 
-import { Middleware } from 'src';
+import { Middleware, MiddlewareContext } from 'src';
 import { mw } from './jsx-dev-runtime';
 
 describe('jsx-middlewares', () => {
@@ -14,7 +14,7 @@ describe('jsx-middlewares', () => {
   });
 
   test('returns the intercepted result when middleware intercepts', () => {
-    mw.addMiddlewares(function intercept(next, ctx, type, props, key) {
+    mw.addMiddlewares(function intercept(next, type, props, key) {
       return next(type, { ...props, className: 'intercepted' }, key);
     });
 
@@ -23,11 +23,11 @@ describe('jsx-middlewares', () => {
   });
 
   test('can add and remove middlewares', () => {
-    const className1: Middleware = function className1(next, ctx, type, props, key) {
+    const className1: Middleware = function className1(next, type, props, key) {
       return next(type, { ...props, className: props.className + ' c1' }, key);
     };
 
-    const className2: Middleware = function className2(next, ctx, type, props, key) {
+    const className2: Middleware = function className2(next, type, props, key) {
       return next(type, { ...props, className: props.className + ' c2' }, key);
     };
 
@@ -41,10 +41,10 @@ describe('jsx-middlewares', () => {
 
   test('first middleware runs last (lifo)', () => {
     mw.addMiddlewares(
-      function className1(next, ctx, type, props, key) {
+      function className1(next, type, props, key) {
         return next(type, { ...props, className: props.className + ' c1' }, key);
       },
-      function className2(next, ctx, type, props, key) {
+      function className2(next, type, props, key) {
         return next(type, { ...props, className: props.className + ' c2' }, key);
       },
     );
@@ -54,7 +54,7 @@ describe('jsx-middlewares', () => {
   });
 
   test('able to wrap elements', () => {
-    mw.addMiddlewares(function wrap(next, ctx, type, { '$-wrap': wrap, ...props }, key) {
+    mw.addMiddlewares(function wrap(next, type, { '$-wrap': wrap, ...props }, key) {
       const res = next(type, props, key);
 
       if (wrap) {
@@ -69,5 +69,28 @@ describe('jsx-middlewares', () => {
 
     const wrapped = <div className='go' key={5} $-wrap />;
     expect(wrapped).toEqual(['section', { children: ['div', { className: 'go' }, 5] }, undefined]);
+  });
+
+  test('next function includes context', () => {
+    mw.addMiddlewares(function wrap(next, type, props, key) {
+      return next(type, { ...props, context: next.context }, key);
+    });
+
+    const notWrapped = <div className='go' key={5} />;
+    expect((notWrapped as any)[1]?.context as MiddlewareContext).toEqual(mw);
+  });
+
+  test('can use original to bypass other middlewares', () => {
+    mw.addMiddlewares(
+      function mw1(next, type, props, key) {
+        return next(type, { ...props, notBypassed: true }, key);
+      },
+      function mw2(next, type, props, key) {
+        return next.original(type, props, key);
+      },
+    );
+
+    const notWrapped = <div className='go' key={5} />;
+    expect((notWrapped as any)[1]?.notBypassed).toBeFalsy();
   });
 });
