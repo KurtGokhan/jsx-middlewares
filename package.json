@@ -1,6 +1,6 @@
 {
   "name": "jsx-middlewares",
-  "description": "A system for hooking into JSX rendering and applying custom logic with a middleware pattern.",
+  "description": "Add custom logic to JSX rendering with a middleware pattern",
   "keywords": [
     "jsx",
     "react",
