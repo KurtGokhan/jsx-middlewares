@@ -82,7 +82,7 @@ function createMiddlewareContextWithDefaults(
 
   function jsxClassic(type: any, props: any, ...children: any[]) {
     if (props == null) props = {};
-    if (children != null) props.children = children;
+    if (children != null) props.children = children.length === 1 ? children[0] : children;
 
     const key = props.key;
     delete props.key;

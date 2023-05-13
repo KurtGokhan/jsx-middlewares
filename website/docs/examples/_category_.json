@@ -3,6 +3,6 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "Various examples to show how this library can be useful."
+    "description": "Various examples to show how this library can be useful. These examples are pretty basic, but they should give you a good idea of how to use this library."
   }
 }

@@ -1,0 +1,50 @@
+---
+sidebar_position: 1
+---
+
+import IfDirectiveExample from '@site/src/examples/if-directive';
+
+# If Directive
+
+This example shows how to implement a `$if` directive that allows you to conditionally render a component.
+
+```jsx
+function ifDirectiveMiddleware(next, type, props, key) {
+  if ('$if' in props) {
+    if (!props.$if) return null;
+    delete props.$if;
+  }
+
+  return next(type, props, key);
+}
+
+addMiddlewares(ifDirectiveMiddleware);
+```
+
+## Usage
+
+```jsx
+function App() {
+  const [show, setShow] = useState(false);
+
+  return (
+    <div>
+      <button onClick={() => setShow(!show)}>Toggle</button>
+
+      <div $if={show}>Show 'em</div>
+    </div>
+  );
+}
+```
+
+<IfDirectiveExample />
+
+## Typescript types
+
+```ts
+declare module 'react' {
+  interface Attributes {
+    $if?: any;
+  }
+}
+```

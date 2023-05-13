@@ -1,0 +1,35 @@
+---
+sidebar_position: 2
+---
+
+import TooltipExample from '@site/src/examples/tooltip';
+
+# Tooltip
+
+This example shows how to implement a `$tooltip` directive that shows a custom tooltip when element is hovered.
+
+Visit the source code of this example to see the implementation.
+
+## Usage
+
+```jsx
+function App() {
+  return (
+    <div>
+      <button $tooltip={'Secret tooltip here'}>Hover the mouse over me to see a tooltip</button>
+    </div>
+  );
+}
+```
+
+<TooltipExample />
+
+## Typescript types
+
+```ts
+declare module 'react' {
+  interface Attributes {
+    $tooltip?: ReactNode;
+  }
+}
+```

@@ -1,0 +1,130 @@
+---
+sidebar_position: 3
+---
+
+import WithClickCountExample from '@site/src/examples/with-click-count';
+
+# Best Practices
+
+If you are reading this documentation, it is probably because JSX Middlewares are a new concept for you. There may be some pitfalls that you may not be aware of. This section will help you to avoid them, and use JSX Middlewares in the best way possible.
+
+## Use responsibly
+
+JSX Middlewares give you a lot of control over your JSX. However, this can be a double-edged sword. If you are not careful, you can end up with a lot of middlewares that are hard to understand. It is recommended to use JSX Middlewares only when you need them, and to keep them simple.
+
+Middlewares can't do anything React itself can't do. But it can do some things the JSX syntax alone can't do.
+
+If you see yourself writing a lot of the same code in your JSX, it may be a good idea to write a middleware for it. In this regard, JSX Middlewares are similar to Higher Order Components (HOCs). It is also similar to Angular directives.
+
+## Understand the JSX
+
+JSX Middlewares are called for every JSX element in your application. It is important to understand how JSX works to be able to avoid pitfalls. It is especially important if you are a library developer, and you want to write middlewares that work with any JSX. You can't assume that the JSX will be written in a certain way.
+
+Some of the things to keep in mind are:
+
+- The `type` is the rendered component. It can be a `string`, `function` or `class`. But it can also be a React Fragment, in which case it is a `symbol`.
+- The `props` is the object which includes all the props passed to the rendered component. Remember that `key` can't be accessed from `props`. It is a separate argument.
+- `props` can include the `children` passed to a component. It is important to understand that the `children` is not always a `string` or `ReactNode`. It can be any JavaScript value, including `Array`, `null`, `undefined` or even functions.
+- The `key` is the key passed to the rendered component. You should generally pass it to the next middleware as is.
+
+## Understand the order of middlewares
+
+The order of middlewares is important. Middlewares are called in the reverse order they were added (LIFO). So, if you add middlewares like this:
+
+```jsx
+addMiddlewares(middleware1, middleware2);
+addMiddlewares(middleware3);
+```
+
+The order of execution will be `middleware3`, `middleware2`, `middleware1` and lastly the original JSX factory.
+
+## Avoid side effects
+
+JSX Middlewares are not meant to be used for side effects. They need to be pure functions. They are meant to transform JSX elements into other JSX elements.
+
+If you need to do side effects, you can wrap your JSX in a component that does the side effects. Check the example in [Rules of hooks](#remember-the-rules-of-hooks) section to see how to do this.
+
+## Avoid infinite loops
+
+It is possible to create infinite loops with JSX Middlewares if you are not careful. This often happens when you unconditionally create new JSX elements in a middleware.
+
+For example, a middleware like this will cause infinite loops, because creating a `div` will call this middleware again, and so on.
+
+```jsx
+function wrapMiddleware(next, type, props, key) {
+  return <div>{next(type, props, key)}</div>;
+}
+```
+
+There are several ways to fix this. For example, by adding a condition to wrap in a `div` only if the `type` is not already a `div`.
+
+It is also a good idea to run the logic of the middleware only if a specific prop is passed to the element. To distinguish such props, it can be a good idea to prefix them with `$`.
+
+Another way to solve this is to use the `original` property of `next` to create JSX elements without middlewares.
+
+```jsx
+function wrapMiddleware(next, type, props, key) {
+  const children = next(type, props, key);
+  return next.original('div', { children }, key);
+}
+```
+
+## Remember the rules of hooks
+
+You cannot use hooks in JSX middlewares. But you can wrap your JSX in a components that uses hooks.
+
+For example, let's say we want to write a middleware that adds the click count to an element. Writing it like this would be wrong:
+
+```jsx
+// error-start
+
+function withClickCountMiddleware(next, type, props, key) {
+  const [count, setCount] = useState(0);
+
+  if (props.$withClickCount) {
+    const { $withClickCount, ...restProps } = props;
+    props = {
+      ...restProps,
+      onClick: () => setCount(count + 1),
+      children: [props.children, ` - Clicked ${count} times`],
+    };
+  }
+
+  return next(type, props, key);
+}
+
+// error-end
+```
+
+Instead, you can write it with a component:
+
+```jsx
+function WithClickCount({ render, props, type }) {
+  const [count, setCount] = useState(0);
+
+  props = {
+    ...props,
+    onClick: () => setCount(count + 1),
+    children: [props.children, ` - Clicked ${count} times`],
+  };
+
+  return render(type, props);
+}
+
+function withClickCountMiddleware(next, type, props, key) {
+  if (props.$withClickCount) {
+    const { $withClickCount, ...restProps } = props;
+    return <WithClickCount render={next} type={type} props={restProps} key={key} />;
+  }
+
+  return next(type, props, key);
+}
+
+addMiddlewares(withClickCountMiddleware);
+
+function App() {
+  return <button $withClickCount>Click me</button>;
+}
+```
+
+<WithClickCountExample />

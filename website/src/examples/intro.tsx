@@ -1,12 +1,13 @@
 /** @jsx jsx */
 
-import { createLocalJsxContext } from '../setup';
+import BrowserWindow from '../components/BrowserWindow';
+import { createLocalJsxContext } from './setup';
 
 const ctx = createLocalJsxContext();
 const jsx = ctx.jsxClassic;
 
 ctx.addMiddlewares(function borderMiddleware(next, type, props, key) {
-  // This will modify the props to add a border and margin to all HTML elements
+  // Modify the props to add a border and margin to all HTML elements
   if (typeof type === 'string') {
     props = {
       ...props,
@@ -33,5 +34,9 @@ function App() {
 }
 
 export default function IndexExample() {
-  return <App />;
+  return (
+    <BrowserWindow>
+      <App />
+    </BrowserWindow>
+  );
 }
