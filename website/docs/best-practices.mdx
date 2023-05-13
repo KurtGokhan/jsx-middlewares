@@ -44,11 +44,11 @@ JSX Middlewares are not meant to be used for side effects. They need to be pure 
 
 If you need to do side effects, you can wrap your JSX in a component that does the side effects. Check the example in [Rules of hooks](#remember-the-rules-of-hooks) section to see how to do this.
 
-## Avoid infinite loops
+## Avoid infinite recursion
 
-It is possible to create infinite loops with JSX Middlewares if you are not careful. This often happens when you unconditionally create new JSX elements in a middleware.
+It is possible to create infinite recursion with JSX Middlewares if you are not careful. This often happens when you unconditionally create new JSX elements in a middleware.
 
-For example, a middleware like this will cause infinite loops, because creating a `div` will call this middleware again, and so on.
+For example, a middleware like below will cause infinite recursion, because creating a `div` will call this middleware again, and so on.
 
 ```jsx
 function wrapMiddleware(next, type, props, key) {
