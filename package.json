@@ -1,6 +1,6 @@
 {
   "name": "jsx-middlewares",
-  "description": "Add custom logic to JSX rendering with a middleware pattern",
+  "description": "Transform rendered JSX with middlewares",
   "keywords": [
     "jsx",
     "react",

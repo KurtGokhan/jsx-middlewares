@@ -19,7 +19,7 @@ ctx.addMiddlewares(rippleMiddleware);
 
 function App() {
   return (
-    <div>
+    <div style={{ display: 'flex', gap: 12 }}>
       <button>Click to see ripple</button>
 
       <button $ripple={false}>This doesn't have ripple though</button>

@@ -10,7 +10,8 @@ const jsx = ctx.jsxClassic;
 function ifDirectiveMiddleware(next, type, props, key) {
   if ('$if' in props) {
     if (!props.$if) return null;
-    delete props.$if;
+    const { $if, ...rest } = props;
+    props = rest;
   }
 
   return next(type, props, key);

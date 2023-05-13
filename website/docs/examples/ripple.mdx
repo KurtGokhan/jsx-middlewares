@@ -9,7 +9,17 @@ import RippleExample from '@site/src/examples/ripple';
 This example shows how to implement a middleware that shows a ripple effect on all buttons and all elements that have `$ripple` property.
 `$ripple` property can be set to false to disable ripple effect on buttons.
 
-Visit the source code of this example to see the implementation.
+```jsx
+function rippleMiddleware(next, type, { $ripple, ...props }, key) {
+  if ($ripple || (type === 'button' && $ripple !== false)) {
+    return <Ripple>{next(type, props, key)}</Ripple>;
+  }
+
+  return next(type, props, key);
+}
+```
+
+Visit the [source code](https://github.com/KurtGokhan/jsx-middlewares/blob/main/website/src/examples/ripple/index.tsx) of this example to see the full implementation.
 
 ## Usage
 

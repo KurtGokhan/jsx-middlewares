@@ -8,7 +8,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'JSX Middlewares',
   tagline: 'Hook into JSX rendering and transform it',
-  favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
   url: 'https://gkurt.com',
@@ -61,10 +60,6 @@ const config = {
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
         title: 'JSX Middlewares',
-        logo: {
-          alt: 'JSX Middlewares Logo',
-          src: 'img/logo.svg',
-        },
         items: [
           {
             href: 'https://github.com/KurtGokhan/jsx-middlewares',
