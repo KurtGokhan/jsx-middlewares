@@ -9,8 +9,8 @@
       "path": "../website"
     },
     {
-      "name": "💪 Simple Example",
-      "path": "../examples/simple"
+      "name": "🌩️ Vite Example",
+      "path": "../examples/vite"
     }
   ],
   "settings": {
