@@ -22,8 +22,7 @@
   },
   "files": [
     "README.md",
-    "dist",
-    "types"
+    "dist"
   ],
   "exports": {
     ".": "./dist/index.js",
