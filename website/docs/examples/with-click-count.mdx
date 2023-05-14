@@ -1,12 +1,15 @@
-/** @jsx jsx */
+---
+sidebar_position: 2
+---
 
-import { useState } from 'react';
-import BrowserWindow from '../components/BrowserWindow';
-import { createLocalJsxContext } from './setup';
+import WithClickCountExample from '@site/src/examples/with-click-count';
 
-const ctx = createLocalJsxContext();
-const jsx = ctx.jsxClassic;
+# Button Click Counter
 
+This example shows you how to implement state with JSX middlewares.
+A `$withClickCount` directive is implemented in this example, which shows how many times a button has been clicked.
+
+```jsx
 function WithClickCount({ render, props, type }) {
   const [count, setCount] = useState(0);
 
@@ -33,16 +36,21 @@ function withClickCountMiddleware(next, type, props, key) {
   return next(type, props, key);
 }
 
-ctx.addMiddlewares(withClickCountMiddleware);
+addMiddlewares(withClickCountMiddleware);
 
 function App() {
   return <button $withClickCount>Click me</button>;
 }
+```
 
-export default function WithClickCountExample() {
-  return (
-    <BrowserWindow>
-      <App />
-    </BrowserWindow>
-  );
+<WithClickCountExample />
+
+## Typescript types
+
+```ts
+declare module 'react' {
+  interface Attributes {
+    $withClickCount?: boolean;
+  }
 }
+```

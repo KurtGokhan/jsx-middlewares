@@ -71,60 +71,16 @@ function wrapMiddleware(next, type, props, key) {
 
 ## Remember the rules of hooks
 
-You cannot use hooks in JSX middlewares. But you can wrap your JSX in a components that uses hooks.
-
-For example, let's say we want to write a middleware that adds the click count to an element. Writing it like this would be wrong:
+You cannot use hooks in JSX middlewares. This is because middlewares are not components, and hooks can only be used in components.
 
 ```jsx
-// error-start
-
-function withClickCountMiddleware(next, type, props, key) {
+function exampleMiddleware(next, type, props, key) {
+  // error-start
+  // Don't use hooks in middlewares!
   const [count, setCount] = useState(0);
-
-  if (props.$withClickCount) {
-    const { $withClickCount, ...restProps } = props;
-    props = {
-      ...restProps,
-      onClick: () => setCount(count + 1),
-      children: [props.children, ` - Clicked ${count} times`],
-    };
-  }
-
+  // error-end
   return next(type, props, key);
-}
-
-// error-end
-```
-
-Instead, you can write it with a component:
-
-```jsx
-function WithClickCount({ render, props, type }) {
-  const [count, setCount] = useState(0);
-
-  props = {
-    ...props,
-    onClick: () => setCount(count + 1),
-    children: [props.children, ` - Clicked ${count} times`],
-  };
-
-  return render(type, props);
-}
-
-function withClickCountMiddleware(next, type, props, key) {
-  if (props.$withClickCount) {
-    const { $withClickCount, ...restProps } = props;
-    return <WithClickCount render={next} type={type} props={restProps} key={key} />;
-  }
-
-  return next(type, props, key);
-}
-
-addMiddlewares(withClickCountMiddleware);
-
-function App() {
-  return <button $withClickCount>Click me</button>;
 }
 ```
 
-<WithClickCountExample />
+Instead, you can wrap your JSX in a components that uses hooks. See [Button Click Counter](/examples/with-click-count) for an example.
