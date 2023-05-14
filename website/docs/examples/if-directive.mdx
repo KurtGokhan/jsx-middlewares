@@ -6,7 +6,8 @@ import IfDirectiveExample from '@site/src/examples/if-directive';
 
 # If Directive
 
-This example shows how to implement a `$if` directive that allows you to conditionally render a component.
+This example shows you how to conditionally render a component based on a prop.
+An `$if` directive is implemented in this example, which skips rendering a component if it's falsy.
 
 ```jsx
 function ifDirectiveMiddleware(next, type, props, key) {

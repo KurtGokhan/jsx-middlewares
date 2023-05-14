@@ -121,28 +121,22 @@ Firstly, you need to add middlewares at the start of your application.
 ```jsx title="main.jsx"
 import { addMiddlewares } from 'jsx-middlewares/react';
 
-addMiddlewares(function outlineMiddleware(next, type, props, key) {
-  // Do something with the type and props
-
-  // Modify the props to add a border and margin to all HTML elements
-  if (typeof type === 'string') {
+addMiddlewares(function emojiMiddleware(next, type, props, key) {
+  // Modify the props to add an emoji to the text
+  if (typeof type === 'string' && typeof props.children === 'string') {
     props = {
       ...props,
-      style: {
-        ...props.style,
-        border: '2px solid crimson',
-        margin: '2px',
-      },
+      children: props.children + ' 🎉',
     };
   }
 
   // Call the next middleware with the new props
-  // If there is no next middleware, it will call the JSX renderer
+  // If there is no next middleware, it will call the original JSX renderer
   return next(type, props, key);
 });
 ```
 
-Then, you can use JSX as usual.
+Then, you can write your JSX as usual.
 
 ```jsx title="my-file.jsx"
 export function App() {
@@ -158,3 +152,7 @@ export function App() {
 The output will be like this:
 
 <IndexExample />
+
+## What's next?
+
+For more examples of what you can do with JSX Middlewares, check out the [examples](/examples) section.

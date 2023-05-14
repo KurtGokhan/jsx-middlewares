@@ -6,21 +6,17 @@ import { createLocalJsxContext } from './setup';
 const ctx = createLocalJsxContext();
 const jsx = ctx.jsxClassic;
 
-ctx.addMiddlewares(function borderMiddleware(next, type, props, key) {
-  // Modify the props to add a border and margin to all HTML elements
-  if (typeof type === 'string') {
+ctx.addMiddlewares(function emojiMiddleware(next, type, props, key) {
+  // Modify the props to add an emoji to the text
+  if (typeof type === 'string' && typeof props.children === 'string') {
     props = {
       ...props,
-      style: {
-        ...props.style,
-        border: '2px solid crimson',
-        margin: '2px',
-      },
+      children: props.children + ' 🎉',
     };
   }
 
   // Call the next middleware with the new props
-  // If there is no next middleware, it will call the JSX renderer
+  // If there is no next middleware, it will call the original JSX renderer
   return next(type, props, key);
 });
 

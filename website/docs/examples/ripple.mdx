@@ -6,7 +6,8 @@ import RippleExample from '@site/src/examples/ripple';
 
 # Ripple
 
-This example shows how to implement a middleware that shows a ripple effect on all buttons and all elements that have `$ripple` property.
+This example shows how to wrap a component with another component using JSX Middlewares.
+It implements a `$ripple` directive, which adds a ripple effect to all buttons in the app, and also all components that have `$ripple` prop set to true.
 `$ripple` property can be set to false to disable ripple effect on buttons.
 
 ```jsx
@@ -30,6 +31,10 @@ function App() {
       <button>Click to see ripple</button>
 
       <button $ripple={false}>This doesn't have ripple though</button>
+
+      <div $ripple style={{ height: 60, border: '1px solid black' }}>
+        Custom element with ripple
+      </div>
     </div>
   );
 }
