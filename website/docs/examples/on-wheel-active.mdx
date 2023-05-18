@@ -1,0 +1,55 @@
+---
+sidebar_position: 1
+---
+
+import Example from '@site/src/examples/onwheel-active';
+
+# Active Wheel Event Handler Directive
+
+This example shows you how to override a ref and add an event listener to it with a directive.
+An `$onWheelActive` event is added to all DOM elements. It is similar to the `onWheel` event, but it sets `{ passive: false }` when registering the event.
+
+```jsx
+function onWheelActiveDirective(next, type, { $onWheelActive, ...props }, key) {
+  if ($onWheelActive) {
+    return (
+      <WithOnWheelActive callback={$onWheelActive} key={key}>
+        {next(type, props)}
+      </WithOnWheelActive>
+    );
+  }
+
+  return next(type, props, key);
+}
+```
+
+Visit the [source code](https://github.com/KurtGokhan/jsx-middlewares/blob/main/website/src/examples/onwheel-active.tsx) of this example to see the full implementation.
+
+## Usage
+
+```jsx
+function App() {
+  return (
+    <div style={{ height: 100, overflow: 'auto' }}>
+      <div style={{ height: 200 }}
+        {/* highlight-next-line */}
+        $onWheelActive={(ev) => ev.preventDefault()}
+      >
+        Try to scroll with the mouse wheel. You can't!
+      </div>
+    </div>
+  );
+}
+```
+
+<Example />
+
+## Typescript types
+
+```ts
+declare module 'react' {
+  interface DOMAttributes<T> {
+    $onWheelActive?: WheelEventHandler<T> | undefined;
+  }
+}
+```

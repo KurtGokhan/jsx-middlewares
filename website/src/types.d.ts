@@ -8,4 +8,8 @@ declare module 'react' {
     $ripple?: boolean;
     $if?: any;
   }
+
+  interface DOMAttributes<T> {
+    $onWheelActive?: WheelEventHandler<T> | undefined;
+  }
 }
