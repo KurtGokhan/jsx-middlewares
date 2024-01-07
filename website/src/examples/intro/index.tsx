@@ -5,12 +5,13 @@ import BrowserWindow from '../../components/BrowserWindow';
 function App() {
   return (
     <div>
-      <button $tooltip={'Secret tooltip here'}>See tooltip on hover</button>
+      <h1>Hello World</h1>
+      <p>This is a paragraph</p>
     </div>
   );
 }
 
-export default function TooltipExample() {
+export default function IndexExample() {
   return (
     <BrowserWindow>
       <App />

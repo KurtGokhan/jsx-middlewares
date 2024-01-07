@@ -3,14 +3,10 @@
 import BrowserWindow from '../../components/BrowserWindow';
 
 function App() {
-  return (
-    <div>
-      <button $tooltip={'Secret tooltip here'}>See tooltip on hover</button>
-    </div>
-  );
+  return <button $withClickCount>Click me</button>;
 }
 
-export default function TooltipExample() {
+export default function WithClickCountExample() {
   return (
     <BrowserWindow>
       <App />

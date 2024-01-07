@@ -1,11 +1,8 @@
-/** @jsx jsx */
-
-import { useState } from 'react';
-import BrowserWindow from '../components/BrowserWindow';
-import { createLocalJsxContext } from './setup';
+import React, { useState } from 'react';
+import { createLocalJsxContext } from '../setup';
 
 const ctx = createLocalJsxContext();
-const jsx = ctx.jsxClassic;
+export const { jsx, jsxDEV, jsxs } = ctx;
 
 function WithClickCount({ render, props, type }) {
   const [count, setCount] = useState(0);
@@ -34,15 +31,3 @@ function withClickCountMiddleware(next, type, props, key) {
 }
 
 ctx.addMiddlewares(withClickCountMiddleware);
-
-function App() {
-  return <button $withClickCount>Click me</button>;
-}
-
-export default function WithClickCountExample() {
-  return (
-    <BrowserWindow>
-      <App />
-    </BrowserWindow>
-  );
-}

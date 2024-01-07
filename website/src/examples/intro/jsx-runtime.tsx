@@ -1,10 +1,7 @@
-/** @jsx jsx */
-
-import BrowserWindow from '../components/BrowserWindow';
-import { createLocalJsxContext } from './setup';
+import { createLocalJsxContext } from '../setup';
 
 const ctx = createLocalJsxContext();
-const jsx = ctx.jsxClassic;
+export const { jsx, jsxDEV, jsxs } = ctx;
 
 ctx.addMiddlewares(function emojiMiddleware(next, type, props, key) {
   // Modify the props to add an emoji to the text
@@ -19,20 +16,3 @@ ctx.addMiddlewares(function emojiMiddleware(next, type, props, key) {
   // If there is no next middleware, it will call the original JSX renderer
   return next(type, props, key);
 });
-
-function App() {
-  return (
-    <div>
-      <h1>Hello World</h1>
-      <p>This is a paragraph</p>
-    </div>
-  );
-}
-
-export default function IndexExample() {
-  return (
-    <BrowserWindow>
-      <App />
-    </BrowserWindow>
-  );
-}

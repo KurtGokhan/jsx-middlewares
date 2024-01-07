@@ -1,12 +1,9 @@
-/** @jsx jsx */
-
-import { cloneElement, forwardRef, useCallback, useRef } from 'react';
+import React, { cloneElement, forwardRef, useCallback, useRef } from 'react';
 import { isElement } from 'react-is';
-import BrowserWindow from '../components/BrowserWindow';
-import { createLocalJsxContext } from './setup';
+import { createLocalJsxContext } from '../setup';
 
 const ctx = createLocalJsxContext();
-const jsx = ctx.jsxClassic;
+export const { jsx, jsxDEV, jsxs } = ctx;
 
 export const WithOnWheelActive = forwardRef<HTMLElement, any>(function _WithOnWheelActive({ callback, children }, ref) {
   const cleanup = useRef<() => void>(undefined);
@@ -52,21 +49,3 @@ function onWheelActiveDirective(next, type, { $onWheelActive, ...props }, key) {
 }
 
 ctx.addMiddlewares(onWheelActiveDirective);
-
-function App() {
-  return (
-    <div style={{ height: 100, overflow: 'auto' }}>
-      <div style={{ height: 200 }} $onWheelActive={(ev) => ev.preventDefault()}>
-        Try to scroll with the mouse wheel. You can't!
-      </div>
-    </div>
-  );
-}
-
-export default function OnWheelActiveExample() {
-  return (
-    <BrowserWindow>
-      <App />
-    </BrowserWindow>
-  );
-}
