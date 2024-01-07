@@ -5,11 +5,12 @@ export function createMiddlewareContext(
   defaultJsxs?: jsxFn | undefined,
   defaultJsxDEV?: jsxDEVFn | undefined,
 ) {
-  return createMiddlewareContextWithDefaults([], defaultJsx, defaultJsxs, defaultJsxDEV);
+  return createMiddlewareContextWithDefaults([], undefined, defaultJsx, defaultJsxs, defaultJsxDEV);
 }
 
 function createMiddlewareContextWithDefaults(
   middlewares: Middleware[] = [],
+  registerOnChange?: (cb: () => void) => void,
   defaultJsx?: jsxFn | undefined,
   defaultJsxs?: jsxFn | undefined,
   defaultJsxDEV?: jsxDEVFn | undefined,
@@ -23,6 +24,9 @@ function createMiddlewareContextWithDefaults(
   let jsxsCb: jsxFn;
   let jsxDEVCb: jsxDEVFn;
 
+  const registeredCallbacks: (() => void)[] = [];
+  const registerOnChangeFn = (cb: () => void) => registeredCallbacks.push(cb);
+
   function refreshCallbacks() {
     jsxCb = createCallback(defaultJsx?.bind(null)!);
 
@@ -33,7 +37,11 @@ function createMiddlewareContextWithDefaults(
         return defaultJsxDEV!(type, props, key, isStaticChildren, source, self);
       })(type, props, key);
     };
+
+    for (const cb of registeredCallbacks) cb();
   }
+
+  registerOnChange?.(refreshCallbacks);
 
   function createCallback(jsx: jsxFn) {
     let cb = jsx as MiddlewareNextFn;
@@ -111,6 +119,7 @@ function createMiddlewareContextWithDefaults(
   function clone(jsx?: jsxFn, jsxs?: jsxFn, jsxDEV?: jsxDEVFn) {
     return createMiddlewareContextWithDefaults(
       middlewares,
+      registerOnChangeFn,
       jsx || defaultJsx,
       jsxs || defaultJsxs,
       jsxDEV || defaultJsxDEV,
