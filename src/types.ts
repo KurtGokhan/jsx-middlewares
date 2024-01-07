@@ -3,7 +3,7 @@ export type jsxFn = (type: any, props: any, key: any) => JSX.Element;
 export type jsxDEVFn = (type: any, props: any, key: any, isStatic: boolean, source: any, self: any) => JSX.Element;
 
 export type MiddlewareNextFn = {
-  (type: any, props: any, key: any): JSX.Element;
+  (type: any, props: any, key?: any): JSX.Element;
   context: MiddlewareContext;
   original: jsxFn;
 };
