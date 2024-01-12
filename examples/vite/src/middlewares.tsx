@@ -1,6 +1,7 @@
 /** @jsxImportSource react */
 
 import { addMiddlewares } from 'jsx-middlewares/react';
+import { memoMiddleware } from './middlewares/memo';
 import { tooltipMiddleware } from './middlewares/tooltip';
 
 export function setupMiddlewares() {
@@ -26,5 +27,6 @@ export function setupMiddlewares() {
       return next(type, props, key);
     },
     tooltipMiddleware,
+    memoMiddleware,
   );
 }
