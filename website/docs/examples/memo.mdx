@@ -1,0 +1,55 @@
+---
+sidebar_position: 5
+---
+
+import MemoDirectiveExample from '@site/src/examples/memo';
+
+# Memo Directive
+
+This directive memoizes a component with `React.memo` to avoid unnecessary rerenders.
+
+```jsx
+const memoMap = new Map();
+
+function memoMiddleware(next, type, { $memo, ...props }, key) {
+  if ($memo && typeof type === 'function') {
+    let memoed = memoMap.get(type);
+    if (!memoed) {
+      memoed = React.memo(type);
+      memoMap.set(type, memoed);
+    }
+
+    return next(memoed, props, key);
+  }
+
+  return next(type, props, key);
+}
+
+addMiddlewares(memoMiddleware);
+```
+
+## Usage
+
+```jsx
+function App() {
+  // ...
+  return (
+    <div>
+      <Memoed>This is not memoed.</Memoed>
+      <Memoed $memo>This is memoed.</Memoed>
+    </div>
+  );
+}
+```
+
+<MemoDirectiveExample />
+
+## Typescript types
+
+```ts
+declare module 'react' {
+  interface Attributes {
+    $memo?: boolean;
+  }
+}
+```

@@ -1,4 +1,4 @@
-export {};
+export { };
 
 declare module 'react' {
   interface Attributes {
@@ -7,6 +7,7 @@ declare module 'react' {
     $tooltip?: ReactNode;
     $ripple?: boolean;
     $if?: any;
+    $memo?: boolean;
   }
 
   interface DOMAttributes<T> {
