@@ -29,11 +29,10 @@ function App() {
 
   return (
     <div>
-    <p>Timer: {count}</p>
+      <p>Timer: {count}</p>
 
-    <Memoed>This is not memoed.</Memoed>
-    <Memoed $memo>This is memoed.</Memoed>
-
+      <Memoed>This is not memoed.</Memoed>
+      <Memoed $memo>This is memoed.</Memoed>
     </div>
   );
 }

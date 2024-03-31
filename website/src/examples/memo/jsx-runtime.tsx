@@ -4,7 +4,6 @@ import { createLocalJsxContext } from '../setup';
 const ctx = createLocalJsxContext();
 export const { jsx, jsxDEV, jsxs } = ctx;
 
-
 const memoMap = new Map();
 
 ctx.addMiddlewares(function memoMiddleware(next, type, { $memo, ...props }, key) {
