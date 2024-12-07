@@ -1,6 +1,12 @@
 /** @jsxImportSource src/react */
 
-import { Middleware, addMiddlewares, baseMiddlewares, clearMiddlewares, removeMiddlewares } from '../react';
+import {
+  Middleware,
+  addMiddlewares,
+  baseMiddlewares,
+  clearMiddlewares,
+  removeMiddlewares,
+} from 'jsx-middlewares/react';
 
 describe('jsx-middlewares/react', () => {
   afterEach(() => {
