@@ -22,7 +22,7 @@
     }
   },
   "javascript": {
-    "jsxRuntime":"reactClassic",
+    "jsxRuntime": "reactClassic",
     "formatter": {
       "quoteStyle": "single"
     }
