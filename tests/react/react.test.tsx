@@ -9,6 +9,12 @@ import {
 } from 'jsx-middlewares/react';
 import 'jsx-middlewares/react/jsx-dev-runtime';
 
+vitest.mock('react/jsx-dev-runtime', () => {
+  const Fragment = Symbol('React.Fragment test');
+  const jsxDEV = (type: any, props: any, key: any) => [type, props, key] as any;
+  return { Fragment, jsxDEV };
+});
+
 describe('jsx-middlewares/react', () => {
   afterEach(() => {
     clearMiddlewares();

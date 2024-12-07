@@ -8,5 +8,5 @@
 
 - `npm start` - Start development server
 - `npm run build` - Build for production
-- `npm test` - Run Jest (alternatively `npm run test:watch`)
-- `npm run check` - Run lint
+- `npm test` - Run Vitest
+- `npm run check` - Run Biome

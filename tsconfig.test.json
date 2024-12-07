@@ -4,7 +4,8 @@
     "rootDir": ".",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "jsx": "react-jsxdev"
+    "jsx": "react-jsxdev",
+    "types": ["vitest/globals"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts", "tests/**/*.tsx"],
   "exclude": ["node_modules", "artifacts", "examples", "website", "dist"]
