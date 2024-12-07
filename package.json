@@ -33,22 +33,27 @@
   },
   "scripts": {
     "tsc": "tsc -p tsconfig.lib.json",
-    "start": "yarn tsc --watch --incremental",
-    "build": "yarn clean && yarn tsc",
+    "start": "npm run tsc -- --watch --incremental",
+    "build": "npm run clean && npm run tsc",
     "clean": "rimraf dist && rimraf tsconfig.lib.tsbuildinfo",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "prettier": "prettier --check .",
-    "prettier:fix": "prettier --write .",
-    "prepare": "yarn build"
+    "lint": "biome lint",
+    "format": "biome format",
+    "check": "biome check",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@types/jest": "^29.5.11",
     "@types/react": "18.2.47",
     "jest": "^29.7.0",
     "prettier": "^3.2.1",
     "rimraf": "^5.0.5",
     "ts-jest": "^29.1.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10",
+    "tsx": "^4.19.2",
     "typescript": "^5.3.3"
   },
   "peerDependencies": {
@@ -60,8 +65,11 @@
     }
   },
   "volta": {
-    "node": "20.10.0",
-    "yarn": "4.0.2"
+    "node": "22.11.0",
+    "npm": "10.9.1"
   },
-  "packageManager": "yarn@4.0.2"
+  "lint-staged": {
+    "*": ["biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"]
+  },
+  "workspaces": ["packages/*", "examples/*", "website"]
 }
