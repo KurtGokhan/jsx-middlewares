@@ -5,15 +5,9 @@
   "homepage": "https://gkurt.com/jsx-middlewares/",
   "repository": {
     "type": "git",
-    "url": "http://github.com/KurtGokhan/jsx-middlewares"
+    "url": "git+ssh://git@github.com/KurtGokhan/jsx-middlewares.git"
   },
-  "keywords": [
-    "jsx",
-    "react",
-    "middleware",
-    "decorator",
-    "directive"
-  ],
+  "keywords": ["jsx", "react", "middleware", "decorator", "directive"],
   "version": "2.0.0",
   "license": "MIT",
   "author": {
@@ -21,10 +15,7 @@
     "email": "krtgkn@gmail.com",
     "url": "https://github.com/KurtGokhan"
   },
-  "files": [
-    "README.md",
-    "dist"
-  ],
+  "files": ["README.md", "dist"],
   "exports": {
     ".": {
       "types": "./dist/esm/index.d.ts",
@@ -54,7 +45,7 @@
     "lint": "biome lint",
     "format": "biome format",
     "check": "biome check",
-    "prepare": "husky"
+    "prepare": "husky && npm run build"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
@@ -85,14 +76,7 @@
     "npm": "10.9.1"
   },
   "lint-staged": {
-    "*": [
-      "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
-    ]
+    "*": ["biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"]
   },
-  "workspaces": [
-    ".",
-    "packages/*",
-    "examples/*",
-    "website"
-  ]
+  "workspaces": [".", "packages/*", "examples/*", "website"]
 }
