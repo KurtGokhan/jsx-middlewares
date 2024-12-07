@@ -8,7 +8,7 @@ ctx.addMiddlewares(function emojiMiddleware(next, type, props, key) {
   if (typeof type === 'string' && typeof props.children === 'string') {
     props = {
       ...props,
-      children: props.children + ' 🎉',
+      children: `${props.children} 🎉`,
     };
   }
 

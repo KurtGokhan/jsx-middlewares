@@ -1,4 +1,3 @@
-import React from 'react';
 import { createLocalJsxContext } from '../setup';
 import styles from './index.module.css';
 

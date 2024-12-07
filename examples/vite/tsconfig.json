@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
     "skipLibCheck": true,
     /* Bundler mode */
@@ -22,10 +18,7 @@
     "noFallthroughCasesInSwitch": true,
     "jsxImportSource": "jsx-middlewares/react"
   },
-  "include": [
-    "src",
-    "**/*.d.ts"
-  ],
+  "include": ["src", "**/*.d.ts"],
   "references": [
     {
       "path": "./tsconfig.node.json"

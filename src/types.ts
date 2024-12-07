@@ -1,24 +1,24 @@
-export type jsxClassicFn = (type: any, props: any, ...children: any[]) => JSX.Element;
-export type jsxFn = (type: any, props: any, key: any) => JSX.Element;
-export type jsxDEVFn = (type: any, props: any, key: any, isStatic: boolean, source: any, self: any) => JSX.Element;
+export type jsxClassicFn<JSXEl> = (type: any, props: any, ...children: any[]) => JSXEl;
+export type jsxFn<JSXEl> = (type: any, props: any, key: any) => JSXEl;
+export type jsxDEVFn<JSXEl> = (type: any, props: any, key: any, isStatic: boolean, source: any, self: any) => JSXEl;
 
-export type MiddlewareNextFn = {
-  (type: any, props: any, key?: any): JSX.Element;
-  context: MiddlewareContext;
-  original: jsxFn;
+export type MiddlewareNextFn<JSXEl> = {
+  (type: any, props: any, key?: any): JSXEl;
+  context: MiddlewareContext<JSXEl>;
+  original: jsxFn<JSXEl>;
 };
 
 type Falsy = false | null | undefined | 0 | '';
 
-export type Middleware = Falsy | ((next: MiddlewareNextFn, type: any, props: any, key: any) => JSX.Element);
+export type Middleware<JSXEl> = Falsy | ((next: MiddlewareNextFn<JSXEl>, type: any, props: any, key: any) => JSXEl);
 
-export interface MiddlewareContext {
-  addMiddlewares(...middlewares: Middleware[]): MiddlewareContext;
-  removeMiddlewares(...middlewares: Middleware[]): MiddlewareContext;
-  clearMiddlewares(): MiddlewareContext;
-  jsxClassic: jsxClassicFn;
-  jsx: jsxFn;
-  jsxs: jsxFn;
-  jsxDEV: jsxDEVFn;
-  clone(jsx?: jsxFn, jsxs?: jsxFn, jsxDEV?: jsxDEVFn): MiddlewareContext;
+export interface MiddlewareContext<JSXEl> {
+  addMiddlewares(...middlewares: Middleware<JSXEl>[]): MiddlewareContext<JSXEl>;
+  removeMiddlewares(...middlewares: Middleware<JSXEl>[]): MiddlewareContext<JSXEl>;
+  clearMiddlewares(): MiddlewareContext<JSXEl>;
+  jsxClassic: jsxClassicFn<JSXEl>;
+  jsx: jsxFn<JSXEl>;
+  jsxs: jsxFn<JSXEl>;
+  jsxDEV: jsxDEVFn<JSXEl>;
+  clone(jsx?: jsxFn<JSXEl>, jsxs?: jsxFn<JSXEl>, jsxDEV?: jsxDEVFn<JSXEl>): MiddlewareContext<JSXEl>;
 }

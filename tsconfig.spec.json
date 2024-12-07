@@ -4,17 +4,6 @@
     "rootDir": ".",
     "jsx": "react-jsxdev"
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    "artifacts",
-    "examples",
-    "website",
-    "dist"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts", "tests/**/*.tsx"],
+  "exclude": ["node_modules", "artifacts", "examples", "website", "dist"]
 }

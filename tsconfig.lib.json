@@ -18,20 +18,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "lib": [
-      "ESNext"
-    ]
+    "lib": ["ESNext"]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    "artifacts",
-    "examples",
-    "website",
-    "dist",
-    "tests/**"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules", "artifacts", "examples", "website", "dist", "tests/**"]
 }

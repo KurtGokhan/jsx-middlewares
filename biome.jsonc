@@ -11,16 +11,7 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "ignore": [
-      "node_modules",
-      "package-lock.json",
-      "dist",
-      "coverage",
-      "build",
-      "out",
-      ".docusaurus",
-      "*.gen.ts"
-    ]
+    "ignore": ["node_modules", "package-lock.json", "dist", "coverage", "build", "out", ".docusaurus", "*.gen.ts"]
   },
   "organizeImports": {
     "enabled": true

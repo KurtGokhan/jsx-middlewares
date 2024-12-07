@@ -1,4 +1,4 @@
-import React, { cloneElement, forwardRef, useCallback, useRef } from 'react';
+import { cloneElement, forwardRef, useCallback, useRef } from 'react';
 import { isElement } from 'react-is';
 import { createLocalJsxContext } from '../setup';
 

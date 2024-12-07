@@ -6,7 +6,7 @@
 
 ## Commands
 
-- `yarn start` - Start development server
-- `yarn build` - Build for production
-- `yarn test` - Run Jest (alternatively `yarn test:watch`)
-- `yarn prettier` - Run Prettier (alternatively `yarn prettier:fix`)
+- `npm start` - Start development server
+- `npm run build` - Build for production
+- `npm test` - Run Jest (alternatively `npm run test:watch`)
+- `npm run check` - Run lint

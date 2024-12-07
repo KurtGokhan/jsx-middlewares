@@ -6,13 +6,7 @@
     "type": "git",
     "url": "http://github.com/KurtGokhan/jsx-middlewares"
   },
-  "keywords": [
-    "jsx",
-    "react",
-    "middleware",
-    "decorator",
-    "directive"
-  ],
+  "keywords": ["jsx", "react", "middleware", "decorator", "directive"],
   "version": "1.0.2",
   "license": "MIT",
   "author": {
@@ -20,10 +14,7 @@
     "email": "krtgkn@gmail.com",
     "url": "https://github.com/KurtGokhan"
   },
-  "files": [
-    "README.md",
-    "dist"
-  ],
+  "files": ["README.md", "dist"],
   "exports": {
     ".": "./dist/index.js",
     "./react": "./dist/react/index.js",
@@ -45,16 +36,15 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@types/jest": "^29.5.11",
-    "@types/react": "18.2.47",
+    "@types/jest": "^29.5.14",
+    "@types/react": "19.0.1",
     "jest": "^29.7.0",
-    "prettier": "^3.2.1",
-    "rimraf": "^5.0.5",
-    "ts-jest": "^29.1.1",
+    "rimraf": "^6.0.1",
+    "ts-jest": "^29.2.5",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.10",
     "tsx": "^4.19.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.7.2"
   },
   "peerDependencies": {
     "react": ">=18"

@@ -1,28 +1,26 @@
 import type { Middleware, MiddlewareContext, MiddlewareNextFn, jsxDEVFn, jsxFn } from './types';
 
-export function createMiddlewareContext(
-  defaultJsx?: jsxFn | undefined,
-  defaultJsxs?: jsxFn | undefined,
-  defaultJsxDEV?: jsxDEVFn | undefined,
+export function createMiddlewareContext<JSXEl>(
+  defaultJsx?: jsxFn<JSXEl> | undefined,
+  defaultJsxs?: jsxFn<JSXEl> | undefined,
+  defaultJsxDEV?: jsxDEVFn<JSXEl> | undefined,
 ) {
   return createMiddlewareContextWithDefaults([], undefined, defaultJsx, defaultJsxs, defaultJsxDEV);
 }
 
-function createMiddlewareContextWithDefaults(
-  middlewares: Middleware[] = [],
+function createMiddlewareContextWithDefaults<JSXEl>(
+  middlewares: Middleware<JSXEl>[] = [],
   registerOnChange?: (cb: () => void) => void,
-  defaultJsx?: jsxFn | undefined,
-  defaultJsxs?: jsxFn | undefined,
-  defaultJsxDEV?: jsxDEVFn | undefined,
+  defaultJsx?: jsxFn<JSXEl> | undefined,
+  defaultJsxs?: jsxFn<JSXEl> | undefined,
+  defaultJsxDEV?: jsxDEVFn<JSXEl> | undefined,
 ) {
-  let ctx: MiddlewareContext;
-
   defaultJsxs ??= defaultJsx;
   defaultJsxDEV ??= defaultJsx;
 
-  let jsxCb: jsxFn;
-  let jsxsCb: jsxFn;
-  let jsxDEVCb: jsxDEVFn;
+  let jsxCb: jsxFn<JSXEl>;
+  let jsxsCb: jsxFn<JSXEl>;
+  let jsxDEVCb: jsxDEVFn<JSXEl>;
 
   const registeredCallbacks: (() => void)[] = [];
   const registerOnChangeFn = (cb: () => void) => registeredCallbacks.push(cb);
@@ -43,8 +41,8 @@ function createMiddlewareContextWithDefaults(
 
   registerOnChange?.(refreshCallbacks);
 
-  function createCallback(jsx: jsxFn) {
-    let cb = jsx as MiddlewareNextFn;
+  function createCallback(jsx: jsxFn<JSXEl>) {
+    let cb = jsx as MiddlewareNextFn<JSXEl>;
     if (cb) {
       cb.context = ctx;
       cb.original = jsx;
@@ -54,7 +52,7 @@ function createMiddlewareContextWithDefaults(
       const mw = middlewares[index];
       if (!mw) continue;
 
-      cb = mw.bind(null, cb) as MiddlewareNextFn;
+      cb = mw.bind(null, cb) as MiddlewareNextFn<JSXEl>;
       cb.context = ctx;
       cb.original = jsx;
     }
@@ -62,14 +60,14 @@ function createMiddlewareContextWithDefaults(
     return cb;
   }
 
-  function addMiddlewares(...items: Middleware[]) {
+  function addMiddlewares(...items: Middleware<JSXEl>[]) {
     middlewares.push(...items);
     refreshCallbacks();
 
     return ctx;
   }
 
-  function removeMiddlewares(...items: Middleware[]) {
+  function removeMiddlewares(...items: Middleware<JSXEl>[]) {
     for (const item of items) {
       const index = middlewares.indexOf(item);
       if (index > -1) {
@@ -89,7 +87,7 @@ function createMiddlewareContextWithDefaults(
   }
 
   function jsxClassic(type: any, props: any, ...children: any[]) {
-    let key;
+    let key: any;
     ({ key, ...props } = props || {});
 
     if (children != null && children.length > 0) {
@@ -116,7 +114,7 @@ function createMiddlewareContextWithDefaults(
     return jsxDEVCb(type, props, key, isStaticChildren, source, self);
   }
 
-  function clone(jsx?: jsxFn, jsxs?: jsxFn, jsxDEV?: jsxDEVFn) {
+  function clone(jsx?: jsxFn<JSXEl>, jsxs?: jsxFn<JSXEl>, jsxDEV?: jsxDEVFn<JSXEl>) {
     return createMiddlewareContextWithDefaults(
       middlewares,
       registerOnChangeFn,
@@ -126,7 +124,7 @@ function createMiddlewareContextWithDefaults(
     );
   }
 
-  ctx = {
+  const ctx: MiddlewareContext<JSXEl> = {
     addMiddlewares,
     removeMiddlewares,
     clearMiddlewares,
