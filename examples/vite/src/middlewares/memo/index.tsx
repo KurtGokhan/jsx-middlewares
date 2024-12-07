@@ -1,4 +1,4 @@
-import { Middleware } from 'jsx-middlewares';
+import { Middleware } from 'jsx-middlewares/react';
 import { memo } from 'react';
 
 const memoMap = new Map();

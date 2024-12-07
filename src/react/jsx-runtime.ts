@@ -1,9 +1,9 @@
-import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
+import { JSX, jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
 import { baseMiddlewares } from './base';
 
-export { Fragment } from 'react/jsx-runtime';
+export { Fragment, type JSX } from 'react/jsx-runtime';
 
-const ctx = baseMiddlewares.clone(_jsx, _jsxs);
+const ctx = baseMiddlewares.clone<JSX.Element>(_jsx, _jsxs);
 
 export const jsx = ctx.jsx;
 export const jsxs = ctx.jsxs;

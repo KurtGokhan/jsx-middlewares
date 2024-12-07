@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { type CSSProperties, type ReactNode } from 'react';
-
 import styles from './styles.module.css';
+import React from 'react';
 
 interface Props {
   children: ReactNode;
@@ -17,7 +17,7 @@ export default function BrowserWindow({
   url = 'http://localhost:3000',
   style,
   bodyStyle,
-}: Props): JSX.Element {
+}: Props) {
   return (
     <div className={styles.browserWindow} style={{ ...style, minHeight }}>
       <div className={styles.browserWindowHeader}>

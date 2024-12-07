@@ -1,2 +1,2 @@
-export type { Middleware } from '../types';
+export type * from './types';
 export { addMiddlewares, baseMiddlewares, clearMiddlewares, removeMiddlewares } from './base';

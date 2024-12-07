@@ -114,13 +114,13 @@ function createMiddlewareContextWithDefaults<JSXEl>(
     return jsxDEVCb(type, props, key, isStaticChildren, source, self);
   }
 
-  function clone(jsx?: jsxFn<JSXEl>, jsxs?: jsxFn<JSXEl>, jsxDEV?: jsxDEVFn<JSXEl>) {
-    return createMiddlewareContextWithDefaults(
-      middlewares,
+  function clone<TJSXEl extends JSXEl = JSXEl>(jsx?: jsxFn<TJSXEl>, jsxs?: jsxFn<TJSXEl>, jsxDEV?: jsxDEVFn<TJSXEl>) {
+    return createMiddlewareContextWithDefaults<TJSXEl>(
+      middlewares as any,
       registerOnChangeFn,
-      jsx || defaultJsx,
-      jsxs || defaultJsxs,
-      jsxDEV || defaultJsxDEV,
+      jsx || (defaultJsx as any),
+      jsxs || (defaultJsxs as any),
+      jsxDEV || (defaultJsxDEV as any),
     );
   }
 

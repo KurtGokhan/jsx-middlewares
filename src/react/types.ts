@@ -1,12 +1,6 @@
-import { jsxDEVFn, jsxFn } from '../types';
+import type { JSX } from 'react';
+import type * as Base from '../types';
 
-declare module 'react/jsx-runtime' {
-  export const Fragment: symbol;
-  export const jsx: jsxFn;
-  export const jsxs: jsxFn;
-}
-
-declare module 'react/jsx-dev-runtime' {
-  export const Fragment: symbol;
-  export const jsxDEV: jsxDEVFn;
-}
+export type Middleware = Base.Middleware<JSX.Element>;
+export type MiddlewareContext = Base.MiddlewareContext<JSX.Element>;
+export type MiddlewareNextFn = Base.MiddlewareNextFn<JSX.Element>;

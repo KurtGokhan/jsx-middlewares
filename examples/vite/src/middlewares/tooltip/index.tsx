@@ -1,4 +1,4 @@
-import { Middleware } from 'jsx-middlewares';
+import { Middleware } from 'jsx-middlewares/react';
 import styles from './index.module.scss';
 
 export const tooltipMiddleware: Middleware = function tooltipMiddleware(next, type, { $tooltip, ...props }, key) {

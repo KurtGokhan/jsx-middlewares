@@ -1,4 +1,4 @@
-import {
+import React,{
   FC,
   ReactElement,
   RefObject,
@@ -151,7 +151,7 @@ export const Ripple = forwardRef<HTMLElement, RippleComponentProps>(function _Ri
   }
 
   return cloneElement(children, {
-    ...children.props,
+    ...children.props as any,
     ref: mergedRef,
   });
 }) as FC<RippleComponentProps>;

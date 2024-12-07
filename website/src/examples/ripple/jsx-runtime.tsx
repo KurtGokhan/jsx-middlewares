@@ -1,3 +1,4 @@
+import React from 'react';
 import { createLocalJsxContext } from '../setup';
 import { Ripple } from './ripple';
 

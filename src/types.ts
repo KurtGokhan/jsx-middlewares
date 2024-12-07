@@ -20,5 +20,9 @@ export interface MiddlewareContext<JSXEl> {
   jsx: jsxFn<JSXEl>;
   jsxs: jsxFn<JSXEl>;
   jsxDEV: jsxDEVFn<JSXEl>;
-  clone(jsx?: jsxFn<JSXEl>, jsxs?: jsxFn<JSXEl>, jsxDEV?: jsxDEVFn<JSXEl>): MiddlewareContext<JSXEl>;
+  clone<TJSXEl extends JSXEl = JSXEl>(
+    jsx?: jsxFn<TJSXEl>,
+    jsxs?: jsxFn<TJSXEl>,
+    jsxDEV?: jsxDEVFn<TJSXEl>,
+  ): MiddlewareContext<TJSXEl>;
 }
