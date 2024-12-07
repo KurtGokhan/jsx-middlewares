@@ -1,2 +1,2 @@
-export type * from './types';
-export { addMiddlewares, baseMiddlewares, clearMiddlewares, removeMiddlewares } from './base';
+export type * from './types.js';
+export { addMiddlewares, baseMiddlewares, clearMiddlewares, removeMiddlewares } from './base.js';

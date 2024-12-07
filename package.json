@@ -17,15 +17,22 @@
   },
   "files": ["README.md", "dist"],
   "exports": {
-    ".": "./dist/index.js",
-    "./react": "./dist/react/index.js",
-    "./react/jsx-runtime": "./dist/react/jsx-runtime.js",
-    "./react/jsx-dev-runtime": "./dist/react/jsx-dev-runtime.js",
-    "./react/types": "./dist/react/types.d.ts"
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/esm/index.d.ts",
+      "default": "./dist/esm/index.js"
+    },
+    "./*": {
+      "import": "./dist/esm/*.js",
+      "require": "./dist/cjs/*.js",
+      "types": "./dist/esm/*.d.ts",
+      "default": "./dist/esm/*.js"
+    }
   },
   "scripts": {
-    "tsc": "tsc -p tsconfig.lib.json",
-    "start": "npm run tsc -- --watch --incremental",
+    "tsc": "tsc -b tsconfig.lib.json tsconfig.cjs.json",
+    "start": "npm run tsc -- --watch",
     "build": "npm run clean && npm run tsc",
     "clean": "rimraf dist && rimraf tsconfig.lib.tsbuildinfo",
     "test": "jest",
