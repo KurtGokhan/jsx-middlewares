@@ -1,4 +1,4 @@
-/** @jsxImportSource src/react */
+/** @jsxImportSource jsx-middlewares/react */
 
 import {
   Middleware,
@@ -7,6 +7,7 @@ import {
   clearMiddlewares,
   removeMiddlewares,
 } from 'jsx-middlewares/react';
+import 'jsx-middlewares/react/jsx-dev-runtime';
 
 describe('jsx-middlewares/react', () => {
   afterEach(() => {

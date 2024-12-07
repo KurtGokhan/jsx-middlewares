@@ -1,12 +1,12 @@
-const { pathsToModuleNameMapper } = require('ts-jest');
 const { compilerOptions } = require('./tsconfig.lib');
 
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
   transform: {
-    '^.+\\.tsx?$': [
+    '^(.+\\.tsx?)|(jsx-middlewares(/.*)?)$': [
       'ts-jest',
       {
+        useESM: true,
         tsconfig: 'tsconfig.spec.json',
       },
     ],
@@ -31,6 +31,7 @@ module.exports = {
     '!<rootDir>/out/**',
   ],
   preset: 'ts-jest',
+
   testEnvironment: 'node',
   testPathIgnorePatterns: [
     '<rootDir>/artifacts/',
@@ -42,7 +43,5 @@ module.exports = {
     '<rootDir>/node_modules/',
   ],
   roots: ['<rootDir>'],
-  modulePaths: [compilerOptions.baseUrl],
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths),
   setupFilesAfterEnv: ['<rootDir>/tests/react/setup.ts'],
 };

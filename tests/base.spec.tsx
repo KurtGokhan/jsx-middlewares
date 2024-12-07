@@ -1,6 +1,6 @@
 /** @jsxImportSource . */
 
-import { Middleware, MiddlewareContext } from 'src';
+import { Middleware, MiddlewareContext } from 'jsx-middlewares';
 import { mw } from './jsx-dev-runtime';
 
 describe('jsx-middlewares', () => {

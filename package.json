@@ -23,11 +23,17 @@
       "types": "./dist/esm/index.d.ts",
       "default": "./dist/esm/index.js"
     },
-    "./*": {
-      "import": "./dist/esm/*.js",
-      "require": "./dist/cjs/*.js",
-      "types": "./dist/esm/*.d.ts",
-      "default": "./dist/esm/*.js"
+    "./react": {
+      "import": "./dist/esm/react/index.js",
+      "require": "./dist/cjs/react/index.js",
+      "types": "./dist/esm/react/index.d.ts",
+      "default": "./dist/esm/react/index.js"
+    },
+    "./react/*": {
+      "import": "./dist/esm/react/*.js",
+      "require": "./dist/cjs/react/*.js",
+      "types": "./dist/esm/react/*.d.ts",
+      "default": "./dist/esm/react/*.js"
     }
   },
   "scripts": {
@@ -63,7 +69,7 @@
     }
   },
   "volta": {
-    "node": "22.11.0",
+    "node": "22.12.0",
     "npm": "10.9.1"
   },
   "lint-staged": {

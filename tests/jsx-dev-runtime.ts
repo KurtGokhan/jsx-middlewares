@@ -1,4 +1,4 @@
-import { createMiddlewareContext } from 'src';
+import { createMiddlewareContext } from 'jsx-middlewares';
 
 export const Fragment = Symbol('React.Fragment test');
 
