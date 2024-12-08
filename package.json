@@ -67,10 +67,14 @@
     "vitest": "^2.1.8"
   },
   "peerDependencies": {
-    "react": ">=18"
+    "react": ">=18",
+    "@types/react": ">=18"
   },
   "peerDependenciesMeta": {
     "react": {
+      "optional": true
+    },
+    "@types/react": {
       "optional": true
     }
   },

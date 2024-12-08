@@ -55,26 +55,7 @@
         },
         "useExhaustiveDependencies": {
           "level": "error",
-          "options": {
-            "hooks": [
-              {
-                "name": "useStableCallback",
-                "stableResult": true
-              },
-              {
-                "name": "useStableValue",
-                "stableResult": true
-              },
-              {
-                "name": "useConstant",
-                "stableResult": true
-              },
-              {
-                "name": "useSingleton",
-                "stableResult": true
-              }
-            ]
-          }
+          "options": {}
         }
       },
       "suspicious": {

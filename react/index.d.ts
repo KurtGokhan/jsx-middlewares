@@ -1,1 +1,2 @@
-export type * from '../dist/cjs/react/index.d.ts';
+import type * as Types from '../dist/cjs/react/index.d.ts';
+export = Types;

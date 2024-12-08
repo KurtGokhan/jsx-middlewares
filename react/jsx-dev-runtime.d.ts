@@ -1,1 +1,2 @@
-export type * from '../dist/cjs/react/jsx-dev-runtime.d.ts';
+import type * as Types from '../dist/cjs/react/jsx-dev-runtime.d.ts';
+export = Types;
