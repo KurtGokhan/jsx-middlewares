@@ -15,7 +15,7 @@
     "email": "krtgkn@gmail.com",
     "url": "https://github.com/KurtGokhan"
   },
-  "files": ["README.md", "dist"],
+  "files": ["README.md", "dist", "!dist/*.tsbuildinfo"],
   "exports": {
     ".": {
       "types": "./dist/esm/index.d.ts",
