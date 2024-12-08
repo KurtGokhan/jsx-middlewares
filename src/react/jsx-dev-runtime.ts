@@ -1,5 +1,5 @@
 import { JSX, jsxDEV as _jsxDEV } from 'react/jsx-dev-runtime';
-import { baseMiddlewares } from './base.js';
+import { baseMiddlewares } from './base.ts';
 
 export { Fragment, type JSX } from 'react/jsx-dev-runtime';
 

@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import type * as Base from '../types.js';
+import type * as Base from '../types.ts';
 
 export type Middleware = Base.Middleware<JSX.Element>;
 export type MiddlewareContext = Base.MiddlewareContext<JSX.Element>;

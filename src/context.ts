@@ -1,4 +1,4 @@
-import type { Middleware, MiddlewareContext, MiddlewareNextFn, jsxDEVFn, jsxFn } from './types.js';
+import type { Middleware, MiddlewareContext, MiddlewareNextFn, jsxDEVFn, jsxFn } from './types.ts';
 
 export function createMiddlewareContext<JSXEl>(
   defaultJsx?: jsxFn<JSXEl> | undefined,
