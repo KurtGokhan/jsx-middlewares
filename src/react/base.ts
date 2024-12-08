@@ -1,7 +1,8 @@
 import { JSX } from 'react';
-import { createMiddlewareContext } from '../context.js';
+import { createMiddlewareContext as baseCreateMiddlewareContext } from '../context.js';
 
-export const baseMiddlewares = createMiddlewareContext<JSX.Element>();
+export const createMiddlewareContext = baseCreateMiddlewareContext<JSX.Element>;
+export const baseMiddlewares = createMiddlewareContext();
 
 export const addMiddlewares = baseMiddlewares.addMiddlewares;
 export const removeMiddlewares = baseMiddlewares.removeMiddlewares;
