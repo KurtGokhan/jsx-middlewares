@@ -1,5 +1,11 @@
 # jsx-middlewares
 
+## 2.0.2
+
+### Patch Changes
+
+- 8751677: Expose jsx types from react folder
+
 ## 2.0.1
 
 ### Patch Changes

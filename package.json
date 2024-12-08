@@ -1,6 +1,6 @@
 {
   "name": "jsx-middlewares",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "type": "module",
   "description": "Transform rendered JSX with middlewares",
   "homepage": "https://gkurt.com/jsx-middlewares/",
@@ -8,14 +8,24 @@
     "type": "git",
     "url": "git+ssh://git@github.com/KurtGokhan/jsx-middlewares.git"
   },
-  "keywords": ["jsx", "react", "middleware", "decorator", "directive"],
+  "keywords": [
+    "jsx",
+    "react",
+    "middleware",
+    "decorator",
+    "directive"
+  ],
   "license": "MIT",
   "author": {
     "name": "Gokhan Kurt",
     "email": "krtgkn@gmail.com",
     "url": "https://github.com/KurtGokhan"
   },
-  "files": ["README.md", "dist", "!dist/*.tsbuildinfo"],
+  "files": [
+    "README.md",
+    "dist",
+    "!dist/*.tsbuildinfo"
+  ],
   "exports": {
     ".": {
       "types": "./dist/esm/index.d.ts",
@@ -76,7 +86,14 @@
     "npm": "10.9.1"
   },
   "lint-staged": {
-    "*": ["biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"]
+    "*": [
+      "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
+    ]
   },
-  "workspaces": [".", "packages/*", "examples/*", "website"]
+  "workspaces": [
+    ".",
+    "packages/*",
+    "examples/*",
+    "website"
+  ]
 }
