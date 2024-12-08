@@ -1,5 +1,6 @@
 {
   "name": "jsx-middlewares",
+  "version": "2.0.1",
   "type": "module",
   "description": "Transform rendered JSX with middlewares",
   "homepage": "https://gkurt.com/jsx-middlewares/",
@@ -8,7 +9,6 @@
     "url": "git+ssh://git@github.com/KurtGokhan/jsx-middlewares.git"
   },
   "keywords": ["jsx", "react", "middleware", "decorator", "directive"],
-  "version": "2.0.0",
   "license": "MIT",
   "author": {
     "name": "Gokhan Kurt",
