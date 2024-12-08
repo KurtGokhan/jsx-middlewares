@@ -10,8 +10,8 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "module": "Node16",
-    "moduleResolution": "node16",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "allowImportingTsExtensions": true,
@@ -20,5 +20,5 @@
     "lib": ["ESNext"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules", "artifacts", "examples", "website", "dist", "tests/**"]
+  "exclude": ["node_modules", "artifacts", "examples", "website", "dist", "tests/**", "react"]
 }
