@@ -1,5 +1,11 @@
 # jsx-middlewares
 
+## 2.0.6
+
+### Patch Changes
+
+- fix mjs imports
+
 ## 2.0.5
 
 ### Patch Changes

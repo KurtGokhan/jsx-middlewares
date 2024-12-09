@@ -1,6 +1,6 @@
 {
   "name": "jsx-middlewares",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Transform rendered JSX with middlewares",
   "homepage": "https://gkurt.com/jsx-middlewares/",
   "repository": {
@@ -50,7 +50,7 @@
     "lint": "biome lint",
     "format": "biome format",
     "check": "biome check",
-    "rewrite-mjs": "find dist/esm -type f -name \"*.js\" -exec sh -c 'mv \"$0\" \"${0%.js}.mjs\"' {} \\;",
+    "rewrite-mjs": "node scripts/rewrite-mjs",
     "prepare": "husky && npm run build && npm run rewrite-mjs"
   },
   "devDependencies": {
