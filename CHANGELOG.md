@@ -1,5 +1,11 @@
 # jsx-middlewares
 
+## 2.0.5
+
+### Patch Changes
+
+- 2bde568: fix dev export conditions
+
 ## 2.0.4
 
 ### Patch Changes
