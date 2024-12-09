@@ -1,5 +1,11 @@
 # jsx-middlewares
 
+## 2.1.0
+
+### Minor Changes
+
+- add fragment to middleware context
+
 ## 2.0.6
 
 ### Patch Changes

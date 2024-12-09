@@ -4,8 +4,9 @@ export function createMiddlewareContext<JSXEl>(
   defaultJsx?: jsxFn<JSXEl> | undefined,
   defaultJsxs?: jsxFn<JSXEl> | undefined,
   defaultJsxDEV?: jsxDEVFn<JSXEl> | undefined,
+  defaultFragment?: unknown,
 ) {
-  return createMiddlewareContextWithDefaults([], undefined, defaultJsx, defaultJsxs, defaultJsxDEV);
+  return createMiddlewareContextWithDefaults([], undefined, defaultJsx, defaultJsxs, defaultJsxDEV, defaultFragment);
 }
 
 function createMiddlewareContextWithDefaults<JSXEl>(
@@ -14,6 +15,7 @@ function createMiddlewareContextWithDefaults<JSXEl>(
   defaultJsx?: jsxFn<JSXEl> | undefined,
   defaultJsxs?: jsxFn<JSXEl> | undefined,
   defaultJsxDEV?: jsxDEVFn<JSXEl> | undefined,
+  defaultFragment?: unknown,
 ) {
   defaultJsxs ??= defaultJsx;
   defaultJsxDEV ??= defaultJsx;
@@ -114,13 +116,19 @@ function createMiddlewareContextWithDefaults<JSXEl>(
     return jsxDEVCb(type, props, key, isStaticChildren, source, self);
   }
 
-  function clone<TJSXEl extends JSXEl = JSXEl>(jsx?: jsxFn<TJSXEl>, jsxs?: jsxFn<TJSXEl>, jsxDEV?: jsxDEVFn<TJSXEl>) {
+  function clone<TJSXEl extends JSXEl = JSXEl>(
+    jsx?: jsxFn<TJSXEl>,
+    jsxs?: jsxFn<TJSXEl>,
+    jsxDEV?: jsxDEVFn<TJSXEl>,
+    Fragment?: unknown,
+  ) {
     return createMiddlewareContextWithDefaults<TJSXEl>(
       middlewares as any,
       registerOnChangeFn,
       jsx || (defaultJsx as any),
       jsxs || (defaultJsxs as any),
       jsxDEV || (defaultJsxDEV as any),
+      Fragment || defaultFragment,
     );
   }
 
@@ -133,6 +141,7 @@ function createMiddlewareContextWithDefaults<JSXEl>(
     jsxs,
     jsxDEV,
     clone,
+    Fragment: defaultFragment,
   };
 
   refreshCallbacks();
