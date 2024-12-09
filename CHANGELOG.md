@@ -1,5 +1,11 @@
 # jsx-middlewares
 
+## 2.0.4
+
+### Patch Changes
+
+- cb96c2e: fix cjs exports
+
 ## 2.0.3
 
 ### Patch Changes
