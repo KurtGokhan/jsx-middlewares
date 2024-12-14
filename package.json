@@ -1,6 +1,6 @@
 {
   "name": "jsx-middlewares",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Transform rendered JSX with middlewares",
   "homepage": "https://gkurt.com/jsx-middlewares/",
   "repository": {
