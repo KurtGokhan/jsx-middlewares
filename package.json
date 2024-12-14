@@ -51,7 +51,7 @@
     "check": "biome check",
     "prepare": "husky && npm run bundle",
     "bundle": "npm run build && node scripts/copyPackageJson",
-    "publish": "npm run bundle && npm publish dist",
+    "publish": "npm run bundle && npm publish ./dist",
     "attw": "npx --yes @arethetypeswrong/cli --pack dist",
     "publint": "cd dist && npx publint --yes"
   },
