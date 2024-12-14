@@ -16,3 +16,20 @@ globSync('./dist/esm/**/*.js').forEach((file) => {
 
   writeFileSync(newFile, content);
 });
+
+globSync('./dist/esm/**/*.ts').forEach((file) => {
+  const newFile = file.replace(/\.ts$/, '.mts');
+  renameSync(file, newFile);
+
+  // Replace import statements in the file
+  let content = readFileSync(newFile, 'utf-8');
+  content = content.replace(/import (.*) from ['"](.*)\.ts['"];/g, "import $1 from '$2.mts';");
+
+  // Replace side effect import statements in the file
+  content = content.replace(/import ['"](.*)\.ts['"];/g, "import '$1.mts';");
+
+  // Replace export statements in the file
+  content = content.replace(/export (.*) from ['"](.*)\.ts['"];/g, "export $1 from '$2.mts';");
+
+  writeFileSync(newFile, content);
+});

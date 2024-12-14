@@ -21,24 +21,23 @@
   "exports": {
     ".": {
       "jsx-middlewares@dev": "./src/index.ts",
-      "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.js",
       "default": "./dist/cjs/index.js"
     },
     "./react": {
       "jsx-middlewares@dev": "./src/react/index.ts",
-      "types": "./dist/esm/react/index.d.ts",
       "import": "./dist/esm/react/index.mjs",
-      "require": "./dist/cjs/react/index.js",
       "default": "./dist/cjs/react/index.js"
     },
-    "./react/*": {
-      "jsx-middlewares@dev": "./src/react/*.ts",
-      "types": "./dist/esm/react/*.d.ts",
-      "import": "./dist/esm/react/*.mjs",
-      "require": "./dist/cjs/react/*.js",
-      "default": "./dist/cjs/react/*.js"
+    "./react/jsx-runtime": {
+      "jsx-middlewares@dev": "./src/react/jsx-runtime.ts",
+      "import": "./dist/esm/react/jsx-runtime.mjs",
+      "default": "./dist/cjs/react/jsx-runtime.js"
+    },
+    "./react/jsx-dev-runtime": {
+      "jsx-middlewares@dev": "./src/react/jsx-dev-runtime.ts",
+      "import": "./dist/esm/react/jsx-dev-runtime.mjs",
+      "default": "./dist/cjs/react/jsx-dev-runtime.js"
     }
   },
   "scripts": {
@@ -51,7 +50,8 @@
     "format": "biome format",
     "check": "biome check",
     "rewrite-mjs": "node scripts/rewrite-mjs",
-    "prepare": "husky && npm run build && npm run rewrite-mjs"
+    "prepare": "husky && npm run build && npm run rewrite-mjs",
+    "attw": "npx --yes @arethetypeswrong/cli --pack ."
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
