@@ -5,4 +5,4 @@ export {
   baseMiddlewares,
   clearMiddlewares,
   removeMiddlewares,
-} from './base.js';
+} from './base.ts';
