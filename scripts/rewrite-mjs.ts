@@ -8,6 +8,9 @@ globSync('./dist/esm/**/*.js').forEach((file) => {
   let content = readFileSync(newFile, 'utf-8');
   content = content.replace(/import (.*) from ['"](.*)\.js['"];/g, "import $1 from '$2.mjs';");
 
+  // Replace dynamic imports
+  content = content.replace(/import\(['"](.*?)\.js['"]\)/g, "import('$1.mjs')");
+
   // Replace side effect import statements in the file
   content = content.replace(/import ['"](.*)\.js['"];/g, "import '$1.mjs';");
 
@@ -24,6 +27,9 @@ globSync('./dist/esm/**/*.ts').forEach((file) => {
   // Replace import statements in the file
   let content = readFileSync(newFile, 'utf-8');
   content = content.replace(/import (.*) from ['"](.*)\.ts['"];/g, "import $1 from '$2.mts';");
+
+  // Replace dynamic imports
+  content = content.replace(/import\(['"](.*?)\.ts['"]\)/g, "import('$1.mts')");
 
   // Replace side effect import statements in the file
   content = content.replace(/import ['"](.*)\.ts['"];/g, "import '$1.mts';");
