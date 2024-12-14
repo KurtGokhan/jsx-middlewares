@@ -53,7 +53,7 @@
     "bundle": "npm run build && node scripts/copyPackageJson",
     "publish": "npm run bundle && npm publish dist",
     "attw": "npx --yes @arethetypeswrong/cli --pack dist",
-    "publint": "npx publint --yes dist"
+    "publint": "cd dist && npx publint --yes"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
